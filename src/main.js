@@ -5,6 +5,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import HomePage from './pages/homepage';
+import Stops from './pages/stops';
+import Contact from './pages/contact';
+import NavBar from './components/nav-bar';
 
 const Main = () => {
     return (
@@ -13,8 +16,11 @@ const Main = () => {
     //Switch returns only the first matching route rather than all
     //Route is the conditionally shown component //based on matching a path to a URL
         <BrowserRouter>
+            <NavBar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/stops" element={<Stops />} />
+                <Route path="/contact" element={<Contact />} />
             </Routes>
         </BrowserRouter>
     );
