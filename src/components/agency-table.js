@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TableFilterColumn from './table-filter-column';
-import headings from './stops-table-headings';
+import headings from './agency-table-headings';
 
 /*the simplest way to define a component is to write a JavaScript function*/
 /*accept a single property object argument*/
-function StopsTable (props) {
+function AgencyTable (props) {
     /*create headings*/
     const columns = React.useMemo(() => headings, []);
 
@@ -19,8 +19,8 @@ function StopsTable (props) {
     );
 }
 
-StopsTable.propTypes = {
+AgencyTable.propTypes = {
     entries: PropTypes.array
 };
 
-export default StopsTable;
+export default AgencyTable;

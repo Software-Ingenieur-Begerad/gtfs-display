@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import HomePage from './pages/homepage';
-import Stops from './pages/stops';
+import Agency from './pages/agency';
 import Contact from './pages/contact';
 import NavBar from './components/nav-bar';
 
@@ -19,7 +19,7 @@ const Main = () => {
             <NavBar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/stops" element={<Stops />} />
+                <Route path="/agency" element={<Agency />} />
                 <Route path="/contact" element={<Contact />} />
             </Routes>
         </BrowserRouter>

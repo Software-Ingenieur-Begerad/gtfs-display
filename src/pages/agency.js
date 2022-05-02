@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import StopsTable from '../components/stops-table';
+import AgencyTable from '../components/agency-table';
 
-const Stops = () => {
+const Agency = () => {
     /*store msgs as array in function component state*/
     /*initialise as empty array*/
     const [msgs, setMsgs] = useState([]);
@@ -10,11 +10,23 @@ const Stops = () => {
     /*fetch msgs in a JavaScript function*/
     const getMsgs = async () => {
         try {
+            /*allow cross origin restest*/
+            /*TODO make port available using config*/
+            axios.defaults.baseURL = 'http://localhost:65534';
+            axios.defaults.headers.get['Content-Type'] =
+        'application/json;charset=utf-8';
+            axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+            axios.defaults.headers.get['Access-Control-Allow-Headers'] = '*';
+            axios.defaults.headers.get['Access-Control-Allow-Methods'] = 'GET';
+            axios.defaults.headers.get['Access-Control-Max-Age'] = 86400;
+
+            /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const msgs = await axios.get('http://localhost:3000/stops');
+            const msgs = await axios.get('agency');
 
             /*set state*/
-            setMsgs(msgs.data);
+            /*NOTE route /agency consist of a data and a meta object*/
+            setMsgs(msgs.data.data);
         } catch (err) {
             console.log('err.message: ' + err.message);
         }
@@ -32,8 +44,8 @@ const Stops = () => {
     }, []);
 
     /*element representing user-defined React component*/
-    const msgTable = <StopsTable entries={msgs} />;
+    const msgTable = <AgencyTable entries={msgs} />;
 
     return <>{msgTable}</>;
 };
-export default Stops;
+export default Agency;
