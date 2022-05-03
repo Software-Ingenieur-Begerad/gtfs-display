@@ -1,4 +1,4 @@
-# dede-display
+# GTFS-Display
 
 monitoring data from GTFS feed
 
