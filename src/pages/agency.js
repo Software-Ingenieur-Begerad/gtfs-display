@@ -22,11 +22,11 @@ const Agency = () => {
 
             /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const msgs = await axios.get('agency');
+            const msgs = await axios.get('agency-all');
 
             /*set state*/
             /*NOTE route /agency consist of a data and a meta object*/
-            setMsgs(msgs.data.data);
+            setMsgs(msgs.data);
         } catch (err) {
             console.log('err.message: ' + err.message);
         }
