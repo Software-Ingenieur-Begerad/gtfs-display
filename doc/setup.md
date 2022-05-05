@@ -19,3 +19,11 @@ sudo mkdir -p /var/www/<archive name>
 sudo tar -xzvf ~/<archive name>.tar.gz -C /var/www/<archive name>/
 sudo mv /var/www/<archive name>/build/ /var/www/<archive name>/public_html
 ```
+
+* if not done already, configure user priviliges
+```
+sudo chown -R www-data /var/www/<archive name>
+sudo chgrp -R www-data /var/www/<archive name>
+sudo chmod g+s /var/www/<archive name>
+sudo chmod -R 755 /var/www/<archive name>
+```
