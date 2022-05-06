@@ -20,6 +20,11 @@ function NavigationBar () {
                     </LinkContainer>
                 </Nav>
                 <Nav className="mr-auto">
+                    <LinkContainer to="/routes">
+                        <Nav.Link>Routes</Nav.Link>
+                    </LinkContainer>
+                </Nav>
+                <Nav className="mr-auto">
                     <LinkContainer to="/stops">
                         <Nav.Link>Stops</Nav.Link>
                     </LinkContainer>
