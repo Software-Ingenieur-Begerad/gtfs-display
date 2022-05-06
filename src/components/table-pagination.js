@@ -9,12 +9,12 @@ export default function PaginationTable ({ columns, data }) {
         getTableProps, // send props to table
         getTableBodyProps, // send props to table body
         headerGroups, // returns normalized header groups
-        page, // fetch the current page  TODO Study!
-        nextPage,
-        previousPage,
+        prepareRow, // Prepare the row in order to be displayed (this function needs to be called for each row before getting the row props)
+        page, // fetch the current page TODO Study!
+        nextPage, // fetch the next page TODO Study!
+        previousPage, // fetch the previous page TODO Study!
         canNextPage,
-        canPreviousPage,
-        prepareRow // Prepare the row in order to be displayed (this function needs to be called for each row before getting the row props)
+        canPreviousPage
     } = useTable(
         {
             columns,
@@ -25,7 +25,7 @@ export default function PaginationTable ({ columns, data }) {
     );
 
     return (
-        <div>
+        <>
             <table {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
@@ -57,7 +57,7 @@ export default function PaginationTable ({ columns, data }) {
             <button onClick={() => nextPage()} disabled={!canNextPage}>
         Next page{' '}
             </button>
-        </div>
+        </>
     );
 }
 
