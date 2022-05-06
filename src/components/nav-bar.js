@@ -30,6 +30,11 @@ function NavigationBar () {
                     </LinkContainer>
                 </Nav>
                 <Nav className="mr-auto">
+                    <LinkContainer to="/stops-pn">
+                        <Nav.Link>Stops (PN)</Nav.Link>
+                    </LinkContainer>
+                </Nav>
+                <Nav className="mr-auto">
                     <LinkContainer to="/contact">
                         <Nav.Link>Contact</Nav.Link>
                     </LinkContainer>
