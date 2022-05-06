@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import HomePage from './pages/homepage';
 import Agency from './pages/agency';
+import Frequencies from './pages/frequencies';
 import Stops from './pages/stops';
 import Contact from './pages/contact';
 import NavBar from './components/nav-bar';
@@ -21,6 +22,7 @@ const Main = () => {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/agency" element={<Agency />} />
+                <Route path="/frequencies" element={<Frequencies />} />
                 <Route path="/stops" element={<Stops />} />
                 <Route path="/contact" element={<Contact />} />
             </Routes>
