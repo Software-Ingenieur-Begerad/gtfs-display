@@ -10,22 +10,11 @@ const Stops = () => {
     /*fetch msgs in a JavaScript function*/
     const getMsgs = async () => {
         try {
-            /*allow cross origin restest*/
-            /*TODO make port available using config*/
-            axios.defaults.baseURL = 'http://localhost:65534';
-            axios.defaults.headers.get['Content-Type'] =
-        'application/json;charset=utf-8';
-            axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
-            axios.defaults.headers.get['Access-Control-Allow-Headers'] = '*';
-            axios.defaults.headers.get['Access-Control-Allow-Methods'] = 'GET';
-            axios.defaults.headers.get['Access-Control-Max-Age'] = 86400;
-
             /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const msgs = await axios.get('stops-all');
+            const msgs = await axios.get('https://soll.vbn.de/gtfs/stops-all');
 
             /*set state*/
-            /*NOTE route /agency consist of a data and a meta object*/
             setMsgs(msgs.data);
         } catch (err) {
             console.log('err.message: ' + err.message);
