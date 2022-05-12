@@ -10,6 +10,7 @@ import Frequencies from './pages/frequencies';
 import GtfsRoutes from './pages/routes';
 import Stops from './pages/stops';
 import Contact from './pages/contact';
+import AgencyDropdown from './pages/agency-dropdown';
 import NavBar from './components/nav-bar';
 
 const Main = () => {
@@ -23,6 +24,7 @@ const Main = () => {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/agency" element={<Agency />} />
+                <Route path="/agency-dropdown" element={<AgencyDropdown />} />
                 <Route path="/frequencies" element={<Frequencies />} />
                 <Route path="/routes" element={<GtfsRoutes />} />
                 <Route path="/stops" element={<Stops />} />
