@@ -14,7 +14,7 @@ const Dropdown = (props) => (
             name="{props.name}"
             onChange={props.onChange}
         >
-            <option selected>Choose...</option>
+            <option defaultValue>Choose...</option>
             {props.options.map((item, index) => (
                 <option key={index} value={item.agency_id}>
                     {item.agency_name}
