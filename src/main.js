@@ -4,14 +4,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 /*some stylesheet is required to use react-bootstrip components*/
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import NavBar from './components/nav-bar';
 import HomePage from './pages/homepage';
 import Agency from './pages/agency';
 import Frequencies from './pages/frequencies';
 import GtfsRoutes from './pages/routes';
+import Service from './pages/service';
 import Stops from './pages/stops';
 import Trips from './pages/trips';
 import Contact from './pages/contact';
-import NavBar from './components/nav-bar';
 
 const Main = () => {
     return (
@@ -26,6 +27,7 @@ const Main = () => {
                 <Route path="/agency" element={<Agency />} />
                 <Route path="/frequencies" element={<Frequencies />} />
                 <Route path="/routes" element={<GtfsRoutes />} />
+                <Route path="/service" element={<Service />} />
                 <Route path="/stops" element={<Stops />} />
                 <Route path="/trips" element={<Trips />} />
                 <Route path="/contact" element={<Contact />} />
