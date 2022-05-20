@@ -6,7 +6,7 @@ import Head from './service-table-head';
 
 /*the simplest way to define a component is to write a JavaScript function*/
 /*accept a single property object argument*/
-function ServiceTableHtml (props) {
+function ServiceTable (props) {
     /*map over msgs array and return Standortmeldungen*/
     const getService = () => {
     //iterate over object
@@ -21,32 +21,35 @@ function ServiceTableHtml (props) {
                 //console.log('time: ' + parseInt(time, 10));
                 let date = new Date(time);
                 //console.log('date: ' + date);
-                let lDate = date.toLocaleDateString();
-                //console.log('lDate: ' + lDate);
-                return <Entry date={lDate} count={count} key={key} />;
+                return <Entry date={date.toDateString()} count={count} key={key} />;
             });
         } else {
             console.log('service NOT available');
         }
     };
 
+    if (props.render) {
     /*return a React element*/
-    return (
-        <>
-            {/*size="sm" cuts cell padding in half*/}
-            {/*variant="dark" inverts colors*/}
-            <Table striped bordered hover size="sm" variant="dark" responsive>
-                <thead className="thead-dark">
-                    <Head />
-                </thead>
-                <tbody>{getService()}</tbody>
-            </Table>
-        </>
-    );
+        return (
+            <>
+                {/*size="sm" cuts cell padding in half*/}
+                {/*variant="dark" inverts colors*/}
+                <Table striped bordered hover size="sm" variant="dark" responsive>
+                    <thead className="thead-dark">
+                        <Head />
+                    </thead>
+                    <tbody>{getService()}</tbody>
+                </Table>
+            </>
+        );
+    } else {
+        return null;
+    }
 }
 
-ServiceTableHtml.propTypes = {
-    service: PropTypes.object
+ServiceTable.propTypes = {
+    service: PropTypes.object,
+    render: PropTypes.bool
 };
 
-export default ServiceTableHtml;
+export default ServiceTable;
