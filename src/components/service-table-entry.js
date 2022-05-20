@@ -5,16 +5,16 @@ class ServiceTableEntry extends Component {
     render () {
         return (
             <tr>
-                <td>{this.props.time}</td>
-                <td>{this.props.tripCount}</td>
+                <td>{this.props.date}</td>
+                <td>{this.props.count}</td>
             </tr>
         );
     }
 }
 
 ServiceTableEntry.propTypes = {
-    time: PropTypes.string,
-    tripCount: PropTypes.number
+    date: PropTypes.string,
+    count: PropTypes.number
 };
 
 export default ServiceTableEntry;

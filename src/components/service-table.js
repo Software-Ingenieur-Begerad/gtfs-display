@@ -10,40 +10,24 @@ function ServiceTableHtml (props) {
     /*map over msgs array and return Standortmeldungen*/
     const getService = () => {
     //iterate over object
-        let timeCount = 0;
-        for (const time in props.service) {
-            if (props.service.hasOwnProperty(time)) {
-                console.log('time: ' + time);
-                let tripCount = 0;
-                for (const tripId in props.service[time]) {
-                    console.log('tripId: ' + tripId);
-                    tripCount++;
-                }
-                timeCount++;
-                console.log('tripCount: ' + tripCount);
-                return <Entry time={time} tripCount={tripCount} key={time} />;
-            }
-        }
-        console.log('timeCount: ' + timeCount);
-
-    /*
         if (props.service) {
-            console.log('service NOT available');
-            return props.service.map((entry, key) => {
-                //the strict equals operator does not converts operants of differnet type
-
-                if (entry.teleType === '1') {
-                    return <Entry obj={entry} key={key} />;
-                }
-
-                for (var i = 0; i < 1; i++) {
-                    console.log('key: ' + key + ', entry: ' + entry);
-                }
-        });
+            return Object.entries(props.service).map((trips, key) => {
+                /*the strict equals operator does not converts operants of differnet type*/
+                //console.log('key: ' + key);
+                let objTrips = trips[1];
+                let count = Object.keys(objTrips).length;
+                //console.log('count: ' + count);
+                let time = parseInt(trips[0], 10);
+                //console.log('time: ' + parseInt(time, 10));
+                let date = new Date(time);
+                //console.log('date: ' + date);
+                let lDate = date.toLocaleDateString();
+                //console.log('lDate: ' + lDate);
+                return <Entry date={lDate} count={count} key={key} />;
+            });
         } else {
             console.log('service NOT available');
         }
-    */
     };
 
     /*return a React element*/
