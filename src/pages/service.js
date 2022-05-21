@@ -19,8 +19,7 @@ const Service = () => {
         try {
             /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            //const objService = await axios.get('https://soll.vbn.de/gtfs/trips?routeshortname=411'
-            let url = `http://localhost:65534/servicedays?routeshortname=${route}`;
+            let url = `https://soll.vbn.de/gtfs/servicedays?routeshortname=${route}`;
             setLoading(true);
             const objService = await axios.get(url);
             setLoading(false);
