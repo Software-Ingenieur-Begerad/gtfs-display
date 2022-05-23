@@ -1,30 +1,39 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import ServiceTable from '../components/service-chart-ordinary-coders';
 import FormValue from '../components/form-value';
 import Loading from '../components/loading';
+import GtfsService from '../utils/gtfs-service';
+//TODO Whats the difference in importing with or without {}?
+import ChartBar from '../components/chart-bar';
+//TODO import ChartBarBeta from '../components/chart-bar-beta';
+import ChartLine from '../components/chart-line';
 
 const Service = () => {
-    /*store route as string*/
+    /*import useState hook and create variable*/
     const [route, setRoute] = useState('');
-
     const [loading, setLoading] = useState(false);
-    /*store msgs as array in function component state*/
-    /*initialise as empty array*/
-    const [objService, setObjService] = useState({});
+    const [time, setTime] = useState([]);
+    const [trip, setTrip] = useState([]);
 
-    /*fetch objService in a JavaScript function*/
-    const getObjService = async () => {
+    /*fetch res in a JavaScript function*/
+    const getRes = async () => {
         try {
             /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
             let url = `https://soll.vbn.de/gtfs/servicedays?routeshortname=${route}`;
             setLoading(true);
-            const objService = await axios.get(url);
+            const res = await axios.get(url);
             setLoading(false);
 
-            /*set state*/
-            setObjService(objService.data);
+            const aryTripCount = GtfsService.getAryTripCount(res);
+            setTrip(aryTripCount);
+            //console.log('aryTripCount len: ' + aryTripCount.length);
+            //console.log('aryTripCount [0]: ' + aryTripCount[0]);
+
+            const aryTime = GtfsService.getAryTime(res);
+            setTime(aryTime);
+            //console.log('aryTime len: ' + aryTime.length);
+            //console.log('aryTime [0]: ' + aryTime[0]);
         } catch (err) {
             console.log('err.message: ' + err.message);
         }
@@ -32,7 +41,7 @@ const Service = () => {
 
     const handleSubmit = () => {
         event.preventDefault();
-        getObjService();
+        getRes();
     };
 
     const handleChange = (e) => {
@@ -40,7 +49,9 @@ const Service = () => {
     };
 
     /*element representing user-defined React component*/
-    const msgTable = <ServiceTable service={objService} />;
+    const bar = <ChartBar time={time} trip={trip} />;
+    //TODO const barBeta = <ChartBarBeta time={time} trip={trip} />;
+    const line = <ChartLine time={time} trip={trip} />;
 
     return (
         <>
@@ -50,8 +61,9 @@ const Service = () => {
                 onSubmit={handleSubmit}
                 onChange={handleChange}
             />
+            {bar}
+            {line}
             <Loading loading={loading} />
-            {msgTable}
         </>
     );
 };
