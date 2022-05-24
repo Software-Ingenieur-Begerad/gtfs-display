@@ -55,15 +55,37 @@ const Service = () => {
 
     return (
         <>
-            <FormValue
-                value={route}
-                valueName={'route'}
-                onSubmit={handleSubmit}
-                onChange={handleChange}
-            />
-            {bar}
-            {line}
-            <Loading loading={loading} />
+            <div>
+                <Loading loading={loading} />
+            </div>
+            <div>
+                <FormValue
+                    value={route}
+                    valueName={'route'}
+                    onSubmit={handleSubmit}
+                    onChange={handleChange}
+                />
+            </div>
+            <div />
+            <div
+                style={{
+                    height: '600px',
+                    width: '900px'
+                }}
+            >
+                <p>Bar Chart</p>
+                <p>{bar}</p>
+            </div>
+            <div
+                style={{
+                    height: '600px',
+                    width: '900px'
+                }}
+            >
+                <p>Line Chart</p>
+
+                <p>{line}</p>
+            </div>
         </>
     );
 };

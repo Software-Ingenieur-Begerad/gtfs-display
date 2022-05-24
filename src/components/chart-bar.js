@@ -10,7 +10,6 @@ import {
     Legend
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -19,9 +18,19 @@ ChartJS.register(
     Tooltip,
     Legend
 );
-
-/* destructure chartData from props*/
+/* destructure props*/
 const ChartBarVertical = ({ time, trip }) => {
+    const data = {
+        labels: time,
+        datasets: [
+            {
+                label: 'trips of route #411 //TODO',
+                data: trip,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 0.2)'
+            }
+        ]
+    };
     const options = {
         responsive: true,
         plugins: {
@@ -31,28 +40,40 @@ const ChartBarVertical = ({ time, trip }) => {
             },
             title: {
                 display: true,
-                text: 'Foo: Chart.js Bar Chart'
+                text: 'Bar chart of route # //TODO'
+            }
+        },
+        scales: {
+            y: {
+                ticks: {
+                    max: 300,
+                    min: 0,
+                    stepSize: 10
+                },
+                scaleLabel: {
+                    display: false
+                }
             }
         }
     };
-
-    const data = {
-        labels: time,
-        datasets: [
-            {
-                label: 'Bar: Dataset 1',
-                data: trip,
-                backgroundColor: 'rgba(255, 99, 132, 0.5)'
-            }
-        ]
-    };
-
-    return <Bar options={options} data={data} />;
+    return (
+        <>
+            <div className="ChartBar">
+                <p>Bar Chart</p>
+                <div
+                    style={{
+                        height: '300px',
+                        width: '900px'
+                    }}
+                >
+                    <Bar data={data} options={options} />
+                </div>
+            </div>
+        </>
+    );
 };
-
 ChartBarVertical.propTypes = {
     time: PropTypes.array,
     trip: PropTypes.array
 };
-
 export default ChartBarVertical;

@@ -11,7 +11,6 @@ import {
     PointElement
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -21,44 +20,63 @@ ChartJS.register(
     Legend,
     PointElement
 );
-
-const ChartLine = (props) => {
+/* destructure props*/
+const ChartLine = ({ time, trip }) => {
     const data = {
-        labels: props.time,
+        labels: time,
         datasets: [
             {
-                label: 'trips of route #411',
-                data: props.trip,
+                label: 'trips of route #411 //TODO',
+                data: trip,
                 fill: false,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgba(255, 99, 132, 0.2)'
             }
         ]
     };
-
     const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
+            },
+            title: {
+                display: true,
+                text: 'Line chart of route #411 //TODO'
+            }
+        },
         scales: {
             y: {
-                beginAtZero: true
+                ticks: {
+                    max: 300,
+                    min: 0,
+                    stepSize: 10
+                },
+                scaleLabel: {
+                    display: false
+                }
             }
         }
     };
-
     return (
         <>
-            <div className="App">
-                <h3>React Line Chart Example</h3>
-                <div style={{ height: '300px', width: '300px', margin: '0 auto' }}>
+            <div className="ChartLine">
+                <p>Line Chart</p>
+                <div
+                    style={{
+                        height: '300px',
+                        width: '900px'
+                    }}
+                >
                     <Line data={data} options={options} />
                 </div>
             </div>
         </>
     );
 };
-
 ChartLine.propTypes = {
     time: PropTypes.array,
     trip: PropTypes.array
 };
-
 export default ChartLine;
