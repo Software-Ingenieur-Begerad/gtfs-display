@@ -40,7 +40,7 @@ const ChartBarVertical = ({ time, trip }) => {
             },
             title: {
                 display: true,
-                text: 'Bar chart of route # //TODO'
+                text: 'Bar chart of route #411 //TODO'
             }
         },
         scales: {

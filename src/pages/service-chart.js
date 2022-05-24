@@ -31,7 +31,9 @@ const Service = () => {
             //console.log('aryTripCount [0]: ' + aryTripCount[0]);
 
             const aryTime = GtfsService.getAryTime(res);
-            setTime(aryTime);
+            const aryDate = aryTime.map((time) => new Date(time).toDateString());
+            //TODO setTime(aryTime);
+            setTime(aryDate);
             //console.log('aryTime len: ' + aryTime.length);
             //console.log('aryTime [0]: ' + aryTime[0]);
         } catch (err) {
@@ -73,8 +75,7 @@ const Service = () => {
                     width: '900px'
                 }}
             >
-                <p>Bar Chart</p>
-                <p>{bar}</p>
+                {bar}
             </div>
             <div
                 style={{
@@ -82,9 +83,7 @@ const Service = () => {
                     width: '900px'
                 }}
             >
-                <p>Line Chart</p>
-
-                <p>{line}</p>
+                {line}
             </div>
         </>
     );
