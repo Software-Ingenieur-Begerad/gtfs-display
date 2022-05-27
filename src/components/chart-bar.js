@@ -19,12 +19,12 @@ ChartJS.register(
     Legend
 );
 /* destructure props*/
-const ChartBarVertical = ({ time, trip }) => {
+const ChartBarVertical = ({ route, time, trip }) => {
     const data = {
         labels: time,
         datasets: [
             {
-                label: 'trips of route #411 //TODO',
+                label: `trip count of route ${route}`,
                 data: trip,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 0.2)'
@@ -40,7 +40,7 @@ const ChartBarVertical = ({ time, trip }) => {
             },
             title: {
                 display: true,
-                text: 'Bar chart of route #411 //TODO'
+                text: `trip count of route ${route}`
             }
         },
         scales: {
@@ -59,7 +59,6 @@ const ChartBarVertical = ({ time, trip }) => {
     return (
         <>
             <div className="ChartBar">
-                <p>Bar Chart</p>
                 <div
                     style={{
                         height: '300px',
@@ -74,6 +73,7 @@ const ChartBarVertical = ({ time, trip }) => {
 };
 ChartBarVertical.propTypes = {
     time: PropTypes.array,
-    trip: PropTypes.array
+    trip: PropTypes.array,
+    route: PropTypes.string
 };
 export default ChartBarVertical;

@@ -21,12 +21,12 @@ ChartJS.register(
     PointElement
 );
 /* destructure props*/
-const ChartLine = ({ time, trip }) => {
+const ChartLine = ({ route, time, trip }) => {
     const data = {
         labels: time,
         datasets: [
             {
-                label: 'trips of route #411 //TODO',
+                label: `trip count of route ${route}`,
                 data: trip,
                 fill: false,
                 backgroundColor: 'rgb(255, 99, 132)',
@@ -43,7 +43,7 @@ const ChartLine = ({ time, trip }) => {
             },
             title: {
                 display: true,
-                text: 'Line chart of route #411 //TODO'
+                text: `trip count of route ${route}`
             }
         },
         scales: {
@@ -62,7 +62,6 @@ const ChartLine = ({ time, trip }) => {
     return (
         <>
             <div className="ChartLine">
-                <p>Line Chart</p>
                 <div
                     style={{
                         height: '300px',
@@ -77,6 +76,7 @@ const ChartLine = ({ time, trip }) => {
 };
 ChartLine.propTypes = {
     time: PropTypes.array,
-    trip: PropTypes.array
+    trip: PropTypes.array,
+    route: PropTypes.string
 };
 export default ChartLine;

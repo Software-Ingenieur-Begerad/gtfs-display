@@ -51,9 +51,9 @@ const Service = () => {
     };
 
     /*element representing user-defined React component*/
-    const bar = <ChartBar time={time} trip={trip} />;
+    const bar = <ChartBar route={route} time={time} trip={trip} />;
     //TODO const barBeta = <ChartBarBeta time={time} trip={trip} />;
-    const line = <ChartLine time={time} trip={trip} />;
+    const line = <ChartLine route={route} time={time} trip={trip} />;
 
     return (
         <>
@@ -71,7 +71,7 @@ const Service = () => {
             <div />
             <div
                 style={{
-                    height: '600px',
+                    height: '500px',
                     width: '900px'
                 }}
             >
@@ -79,7 +79,7 @@ const Service = () => {
             </div>
             <div
                 style={{
-                    height: '600px',
+                    height: '500px',
                     width: '900px'
                 }}
             >
