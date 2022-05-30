@@ -3,16 +3,19 @@ import axios from 'axios';
 import ServiceTable from '../components/service-table';
 import FormValue from '../components/form-value';
 import Loading from '../components/loading';
+//TODO Whats the difference in importing with or without {}?
+import ChartBar from '../components/chart-bar';
+import ChartLine from '../components/chart-line';
+import GtfsService from '../utils/gtfs-service';
 
 const Service = () => {
     /*store route as string*/
     const [route, setRoute] = useState('');
-
     const [render, setRender] = useState(false);
     const [loading, setLoading] = useState(false);
-    /*store msgs as array in function component state*/
-    /*initialise as empty array*/
     const [objService, setObjService] = useState({});
+    const [time, setTime] = useState([]);
+    const [trip, setTrip] = useState([]);
 
     /*fetch objService in a JavaScript function*/
     const getObjService = async () => {
@@ -27,6 +30,11 @@ const Service = () => {
 
             /*set state*/
             setObjService(objService.data);
+            const aryTripCount = GtfsService.getAryTripCount(objService);
+            setTrip(aryTripCount);
+            const aryTime = GtfsService.getAryTime(objService);
+            const aryDate = aryTime.map((time) => new Date(time).toDateString());
+            setTime(aryDate);
         } catch (err) {
             console.log('err.message: ' + err.message);
         }
@@ -43,6 +51,8 @@ const Service = () => {
 
     /*element representing user-defined React component*/
     const msgTable = <ServiceTable render={render} service={objService} />;
+    const bar = <ChartBar route={route} time={time} trip={trip} />;
+    const line = <ChartLine route={route} time={time} trip={trip} />;
 
     return (
         <>
@@ -53,6 +63,22 @@ const Service = () => {
                 onChange={handleChange}
             />
             <Loading loading={loading} />
+            <div
+                style={{
+                    height: '500px',
+                    width: '900px'
+                }}
+            >
+                {bar}
+            </div>
+            <div
+                style={{
+                    height: '500px',
+                    width: '900px'
+                }}
+            >
+                {line}
+            </div>
             {msgTable}
         </>
     );
