@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/Table';
-import Entry from './service-table-entry';
-import Head from './service-table-head';
+import Entry from './service-overview-table-entry';
+import Head from './service-overview-table-head';
 
 /*the simplest way to define a component is to write a JavaScript function*/
 /*accept a single property object argument*/
@@ -11,17 +11,14 @@ function ServiceOverviewTable (props) {
     const getService = () => {
     //iterate over object
         if (props.service) {
-            return Object.entries(props.service).map((trips, key) => {
+            return Object.entries(props.service).map((agencies, key) => {
                 /*the strict equals operator does not converts operants of differnet type*/
                 //console.log('key: ' + key);
-                let objTrips = trips[1];
-                let count = Object.keys(objTrips).length;
+                let objRoutes = agencies[1];
+                let count = Object.keys(objRoutes).length;
                 //console.log('count: ' + count);
-                let time = parseInt(trips[0], 10);
-                //console.log('time: ' + parseInt(time, 10));
-                let date = new Date(time);
-                //console.log('date: ' + date);
-                return <Entry date={date.toDateString()} count={count} key={key} />;
+                let agency = agencies[0];
+                return <Entry agency={agency} count={count} key={key} />;
             });
         } else {
             console.log('service NOT available');
