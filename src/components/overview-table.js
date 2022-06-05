@@ -15,6 +15,7 @@ function OverviewTable ({ overview }) {
                     <Entry
                         agencyName={item.agency_name}
                         routeCount={item.route_count}
+                        tripCount={item.trip_count}
                         day={item.day}
                         key={index}
                     />

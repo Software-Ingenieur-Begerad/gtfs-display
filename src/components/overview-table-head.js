@@ -5,6 +5,7 @@ const OverviewTableHead = () => {
         <tr>
             <td>Agency</td>
             <td>Route Count</td>
+            <td>Trip Count</td>
             <td>{new Date().toDateString()}</td>
         </tr>
     );
