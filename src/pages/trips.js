@@ -18,7 +18,7 @@ const Trips = () => {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
             //const msgs = await axios.get('https://soll.vbn.de/gtfs/trips?routeshortname=411'
             const msgs = await axios.get(
-                `https://soll.vbn.de/gtfs/trips?routeshortname=${route}`
+                `https://v1gtfs.vbn.api.swingbe.de/trips?routeshortname=${route}`
             );
 
             /*set state*/
