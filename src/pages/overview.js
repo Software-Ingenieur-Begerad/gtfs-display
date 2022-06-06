@@ -10,7 +10,7 @@ const Overview = () => {
     const [agencies, setAgencies] = useState(false);
     const [wait, setWait] = useState(false);
 
-    const handleAsyncOps = async () => {
+    const handleAsyncOps = async (isMounted) => {
     /*get data for each agency*/
         for (var j = 0; j < overview.length; j++) {
             //console.log('j: ' + j);
@@ -47,7 +47,7 @@ const Overview = () => {
             }
             // 4. Put it back into the array. N.B. we *are* mutating the array here, but that's why we made a copy first
             aryObjs[j] = obj;
-            if (isBreaking) {
+            if (isBreaking && isMounted) {
                 // 5. Set the state to the new copy
                 setOverview((overview) => aryObjs);
                 setWait((wait) => !wait);
@@ -56,7 +56,7 @@ const Overview = () => {
         }
     };
 
-    const getAgencies = async () => {
+    const getAgencies = async (isMounted) => {
         try {
             /*get agencies*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
@@ -76,7 +76,9 @@ const Overview = () => {
                 objOvItem['day'] = null;
 
                 /*set state*/
-                setOverview((overview) => [...overview, objOvItem]);
+                if (isMounted) {
+                    setOverview((overview) => [...overview, objOvItem]);
+                }
             }
 
             /*set... is an async function and you cannot get the state value immediately after update. Use useEffect hook instead*/
@@ -87,29 +89,44 @@ const Overview = () => {
     };
 
     useEffect(() => {
+    /*declare let isMounted = true inside useEffect, which will be changed in the cleanup callback, as soon as the component is unmounted. Before state updates, check this variable conditionally.*/
+        let isMounted = true;
         if (wait) {
             setWait((wait) => !wait);
-            handleAsyncOps();
+            handleAsyncOps(isMounted);
         }
+        return () => {
+            isMounted = false;
+        };
     }, [wait]);
 
     /*If you want to get an updated state value then use useEffect hook with dependency array. React will execute this hook after each state update.*/
     useEffect(() => {
-    //////console.log('useEffect() agencies: ' + agencies);
+    /*declare let isMounted = true inside useEffect, which will be changed in the cleanup callback, as soon as the component is unmounted. Before state updates, check this variable conditionally.*/
+        let isMounted = true;
+        //////console.log('useEffect() agencies: ' + agencies);
         if (agencies) {
             ////console.log('agencies available');
-            handleAsyncOps();
+            handleAsyncOps(isMounted);
         } else {
             ////console.log('agencies not available');
         }
+        return () => {
+            isMounted = false;
+        };
     }, [agencies]);
 
     /*this hook is run after a DOM update. Changing state might result in an infinite loop*/
     /*hook need to be placed in body of the function component in which it is used*/
     useEffect(() => {
-    /*effect goes here*/
-        getAgencies();
+    /*declare let isMounted = true inside useEffect, which will be changed in the cleanup callback, as soon as the component is unmounted. Before state updates, check this variable conditionally.*/
+        let isMounted = true;
 
+        getAgencies(isMounted);
+
+        return () => {
+            isMounted = false;
+        };
     /*use an empty dependency array to ensure the hook is running only once*/
     /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
     }, []);
