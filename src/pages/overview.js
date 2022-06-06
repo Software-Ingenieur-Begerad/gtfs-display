@@ -8,7 +8,7 @@ const Overview = () => {
     /*initialise as empty array*/
     const [overview, setOverview] = useState([]);
     const [agencies, setAgencies] = useState(false);
-    const [wait, setWaitRoutesCount] = useState(false);
+    const [wait, setWait] = useState(false);
 
     const handleAsyncOps = async () => {
     /*get data for each agency*/
@@ -50,7 +50,7 @@ const Overview = () => {
             if (isBreaking) {
                 // 5. Set the state to the new copy
                 setOverview((overview) => aryObjs);
-                setWaitRoutesCount((wait) => !wait);
+                setWait((wait) => !wait);
                 break;
             }
         }
@@ -64,24 +64,21 @@ const Overview = () => {
                 'https://v1gtfs.vbn.api.swingbe.de/agency-all'
             );
 
-            if ('data' in res) {
-                let aryOv = res.data;
-                for (var i = 0; i < aryOv.length; i++) {
-                    let agencyId = aryOv[i].agency_id;
-                    let agencyName = aryOv[i].agency_name;
-                    let objOvItem = {};
-                    objOvItem['agency_id'] = agencyId;
-                    objOvItem['agency_name'] = agencyName;
-                    objOvItem['route_count'] = null;
-                    objOvItem['trip_count'] = null;
-                    objOvItem['day'] = null;
+            let aryOv = res.data;
+            for (var i = 0; i < aryOv.length; i++) {
+                let agencyId = aryOv[i].agency_id;
+                let agencyName = aryOv[i].agency_name;
+                let objOvItem = {};
+                objOvItem['agency_id'] = agencyId;
+                objOvItem['agency_name'] = agencyName;
+                objOvItem['route_count'] = null;
+                objOvItem['trip_count'] = null;
+                objOvItem['day'] = null;
 
-                    /*set state*/
-                    setOverview((overview) => [...overview, objOvItem]);
-                }
-            } else {
-                ////console.log('data not available');
+                /*set state*/
+                setOverview((overview) => [...overview, objOvItem]);
             }
+
             /*set... is an async function and you cannot get the state value immediately after update. Use useEffect hook instead*/
             setAgencies((agencies) => !agencies);
         } catch (err) {
@@ -91,7 +88,7 @@ const Overview = () => {
 
     useEffect(() => {
         if (wait) {
-            setWaitRoutesCount((wait) => !wait);
+            setWait((wait) => !wait);
             handleAsyncOps();
         }
     }, [wait]);
