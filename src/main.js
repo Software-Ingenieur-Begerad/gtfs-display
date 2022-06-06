@@ -11,7 +11,6 @@ import Frequencies from './pages/frequencies';
 import GtfsRoutes from './pages/routes';
 import Overview from './pages/overview';
 import Service from './pages/service';
-import ServiceOverview from './pages/service-overview';
 import Stops from './pages/stops';
 import Trips from './pages/trips';
 import Contact from './pages/contact';
@@ -31,7 +30,6 @@ const Main = () => {
                 <Route path="/routes" element={<GtfsRoutes />} />
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/service" element={<Service />} />
-                <Route path="/service-overview" element={<ServiceOverview />} />
                 <Route path="/stops" element={<Stops />} />
                 <Route path="/trips" element={<Trips />} />
                 <Route path="/contact" element={<Contact />} />

@@ -12,7 +12,9 @@ const Agency = () => {
         try {
             /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const msgs = await axios.get('https://soll.vbn.de/gtfs/agency-all');
+            const msgs = await axios.get(
+                'https://v1gtfs.vbn.api.swingbe.de/agency-all'
+            );
 
             /*set state*/
             setMsgs(msgs.data);

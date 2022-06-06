@@ -12,7 +12,9 @@ const Frequencies = () => {
         try {
             /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const msgs = await axios.get('https://soll.vbn.de/gtfs/frequencies-all');
+            const msgs = await axios.get(
+                'https://v1gtfs.vbn.api.swingbe.de/frequencies-all'
+            );
 
             /*set state*/
             setMsgs(msgs.data);

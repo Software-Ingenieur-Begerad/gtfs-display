@@ -8,9 +8,9 @@ const Overview = () => {
     /*initialise as empty array*/
     const [overview, setOverview] = useState([]);
     const [agencies, setAgencies] = useState(false);
-    const [waitRoutesCount, setWaitRoutesCount] = useState(false);
+    const [wait, setWaitRoutesCount] = useState(false);
 
-    const getRoutesCount = async () => {
+    const handleAsyncOps = async () => {
     /*get data for each agency*/
         for (var j = 0; j < overview.length; j++) {
             //console.log('j: ' + j);
@@ -27,7 +27,7 @@ const Overview = () => {
             //console.log('routeCount: ' + routeCount);
             if (routeCount === null) {
                 const resRouteCount = await axios.get(
-                    `https://soll.vbn.de/gtfs/route-count?agencyid=${agencyId}`
+                    `https://v1gtfs.vbn.api.swingbe.de/route-count?agencyid=${agencyId}`
                 );
                 obj.route_count = resRouteCount.data;
                 routeCount = obj.route_count;
@@ -38,7 +38,7 @@ const Overview = () => {
             //console.log('tripCount: ' + tripCount);
             if (tripCount === null) {
                 const resTripCount = await axios.get(
-                    `https://soll.vbn.de/gtfs/trip-count?agencyid=${agencyId}`
+                    `https://v1gtfs.vbn.api.swingbe.de/trip-count?agencyid=${agencyId}`
                 );
                 obj.trip_count = resTripCount.data;
                 tripCount = obj.trip_count;
@@ -50,7 +50,7 @@ const Overview = () => {
             if (isBreaking) {
                 // 5. Set the state to the new copy
                 setOverview((overview) => aryObjs);
-                setWaitRoutesCount((waitRoutesCount) => !waitRoutesCount);
+                setWaitRoutesCount((wait) => !wait);
                 break;
             }
         }
@@ -60,7 +60,9 @@ const Overview = () => {
         try {
             /*get agencies*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const res = await axios.get('https://soll.vbn.de/gtfs/agency-all');
+            const res = await axios.get(
+                'https://v1gtfs.vbn.api.swingbe.de/agency-all'
+            );
 
             if ('data' in res) {
                 let aryOv = res.data;
@@ -88,18 +90,18 @@ const Overview = () => {
     };
 
     useEffect(() => {
-        if (waitRoutesCount) {
-            setWaitRoutesCount((waitRoutesCount) => !waitRoutesCount);
-            getRoutesCount();
+        if (wait) {
+            setWaitRoutesCount((wait) => !wait);
+            handleAsyncOps();
         }
-    }, [waitRoutesCount]);
+    }, [wait]);
 
     /*If you want to get an updated state value then use useEffect hook with dependency array. React will execute this hook after each state update.*/
     useEffect(() => {
     //////console.log('useEffect() agencies: ' + agencies);
         if (agencies) {
             ////console.log('agencies available');
-            getRoutesCount();
+            handleAsyncOps();
         } else {
             ////console.log('agencies not available');
         }
