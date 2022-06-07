@@ -3,8 +3,6 @@ import axios from 'axios';
 import RoutesTable from '../components/routes-table';
 
 const Routes = () => {
-    /*store msgs as array in function component state*/
-    /*initialise as empty array*/
     const [data, setData] = useState([]);
 
     const getData = async () => {
@@ -33,9 +31,10 @@ const Routes = () => {
     /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
     }, []);
 
-    /*element representing user-defined React component*/
-    const dataTable = <RoutesTable entries={data} />;
-
-    return <>{dataTable}</>;
+    return (
+        <>
+            <RoutesTable entries={data} />
+        </>
+    );
 };
 export default Routes;
