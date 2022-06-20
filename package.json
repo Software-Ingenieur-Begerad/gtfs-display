@@ -26,7 +26,7 @@
         "build": "webpack --mode production"
     },
     "dependencies": {
-        "axios": "0.26.1",
+        "axios": "0.27.2",
         "bootstrap": "5.1.3",
         "chart.js": "3.8.0",
         "react": "17.0.2",
