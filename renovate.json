@@ -16,10 +16,7 @@
 	    "matchDepTypes": ["devDependencies"],
 	    "matchPackagePatterns": ["lint","prettier"],
 	    "automerge": true
-	}
-    ],
-    "packageRules":
-    [
+	},
 	{
 	    "matchingUpdateTypes": ["minor","patch"],
 	    "matchCurrentVersion": "!/^0/",
