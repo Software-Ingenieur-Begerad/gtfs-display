@@ -6,6 +6,7 @@ monitoring data from GTFS feed
 0. [General](#General)
 1. [Quick Start Guide](#Quick-Start-Guide)
 2. [Setup](doc/setup.md)
+3. [Next Steps](#next-steps)
 
 # General
 
@@ -44,3 +45,11 @@ npm run start
 ```
 npm run build
 ```
+
+# Next Steps
+
+* Which agency has already delivered data?\
+How long is the delivered data valid?
+* Show 1/2/3/4 weeks in the past, present and future how many trips of agencies are available or valid!\
+Does the number of trips change significantly? Is it a gap in data delivery?
+* Subpages or pages should not need to do a full reload of data for UI interaction or pages or subpages switches!
