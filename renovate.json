@@ -1,5 +1,29 @@
 {
-  "extends": [
-    "config:base"
-  ]
+    "extends":
+    [
+	"config:base"
+    ],
+    "timezone": "Europe/Berlin",
+    "schedule":
+    [
+	"after 10pm every weekday",
+	"before 5am every weekday",
+	"every weekend"
+    ],
+    "packageRules":
+    [
+	{
+	    "matchDepTypes": ["devDependencies"],
+	    "matchPackagePatterns": ["lint","prettier"],
+	    "automerge": true
+	}
+    ],
+    "packageRules":
+    [
+	{
+	    "matchingUpdateTypes": ["minor","patch"],
+	    "matchCurrentVersion": "!/^0/",
+	    "automerge": true
+	}
+    ]
 }
