@@ -60,7 +60,6 @@ const Overview = () => {
             /*get agencies*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
             const res = await axios.get(`${config.API}agency-all`);
-
             let aryOv = res.data;
             for (var i = 0; i < aryOv.length; i++) {
                 let agencyId = aryOv[i].agency_id;
