@@ -1,11 +1,6 @@
 import React from 'react';
-
+import GtfsFiles from '../components/gtfs-files.js';
 const Homepage = () => {
-    return (
-        <>
-            <h2>Welcome</h2>
-            <p>Display data from GTFS files.</p>
-        </>
-    );
+    return <GtfsFiles />;
 };
 export default Homepage;
