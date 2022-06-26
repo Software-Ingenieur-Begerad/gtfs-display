@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
 //destructure props
 const GtfsFile = ({ name }) => {
     /*store count as array in function component state*/
@@ -33,9 +35,21 @@ const GtfsFile = ({ name }) => {
     /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
     }, []);
     return (
-        <p>
-            {name}: {count ? count : 'loading...'}
-        </p>
+        <>
+            <Card
+                style={{ width: '11rem' }}
+                body
+                bg="dark"
+                key="dark"
+                text="light"
+                className="mb-2"
+            >
+                {name}:<br />
+                <Badge pill bg="secondary">
+                    {count ? count : 'loading...'}
+                </Badge>
+            </Card>
+        </>
     );
 };
 

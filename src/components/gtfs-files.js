@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import GtfsFile from './gtfs-file';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 const GtfsFiles = () => {
     /*store and initialise data in function component state*/
     const [tables, setTables] = useState([]);
@@ -32,18 +34,16 @@ const GtfsFiles = () => {
     }, []);
     if (tables) {
         return (
-            <>
-                {tables.map((item, index) => {
-                    return <GtfsFile key={index} name={item['table_name']} />;
-                })}
-            </>
+            <Container>
+                <Row>
+                    {tables.map((item, index) => {
+                        return <GtfsFile key={index} name={item['table_name']} />;
+                    })}
+                </Row>
+            </Container>
         );
     } else {
-        return (
-            <>
-                <p>List of GTFS files loading...</p>
-            </>
-        );
+        return <p>List of GTFS files loading...</p>;
     }
 };
 
