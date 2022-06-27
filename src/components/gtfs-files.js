@@ -34,13 +34,18 @@ const GtfsFiles = () => {
     }, []);
     if (tables) {
         return (
-            <Container>
-                <Row>
-                    {tables.map((item, index) => {
-                        return <GtfsFile key={index} name={item['table_name']} />;
-                    })}
-                </Row>
-            </Container>
+            <>
+                <Container>
+                    <Row>
+                        {tables.map((item, index) => {
+                            return <GtfsFile key={index} name={item['table_name']} />;
+                        })}
+                    </Row>
+                    <Row>
+                        <hr />
+                    </Row>
+                </Container>
+            </>
         );
     } else {
         return <p>List of GTFS files loading...</p>;
