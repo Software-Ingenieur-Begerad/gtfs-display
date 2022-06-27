@@ -14,7 +14,7 @@ const GtfsFile = ({ name }) => {
         try {
             /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const address = `https://www.v1gtfs.delfi.api.swingbe.de/table-${name}-count`;
+            const address = `https://v1gtfs.vbn.api.swingbe.de/table-${name}-count`;
             const count = await axios.get(address);
 
             /*set state*/

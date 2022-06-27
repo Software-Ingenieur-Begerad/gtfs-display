@@ -12,7 +12,7 @@ const GtfsFiles = () => {
             /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
             const tables = await axios.get(
-                'https://www.v1gtfs.delfi.api.swingbe.de/table-names'
+                'https://v1gtfs.vbn.api.swingbe.de/table-names'
             );
 
             /*set state*/
