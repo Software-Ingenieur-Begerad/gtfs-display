@@ -3,6 +3,8 @@ import axios from 'axios';
 import DropDownSelect from '../components/drop-down-select';
 const selectOptions = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000];
 import ShapesTable from '../components/shapes-table';
+import Stack from 'react-bootstrap/Stack';
+import Button from 'react-bootstrap/Button';
 const Shapes = () => {
     /*store and initialise data in function component state*/
     const [oset, setOset] = useState(1);
@@ -55,11 +57,17 @@ const Shapes = () => {
     const table = <ShapesTable aryData={ary} />;
     return (
         <>
-            <button onClick={handleClickPrev} autoFocus>
-        prev
-            </button>
-            <button onClick={handleClickNext}>next</button>
-            {select}
+            <Stack direction="horizontal" gap={1} className="m-1">
+                <Button variant="secondary" onClick={handleClickPrev} autoFocus>
+          prev
+                </Button>
+                <div className="vr" />
+                {select}
+                <div className="vr" />
+                <Button variant="secondary" onClick={handleClickNext}>
+          next
+                </Button>
+            </Stack>
             {table}
         </>
     );

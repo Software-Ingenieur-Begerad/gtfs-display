@@ -33,7 +33,7 @@ function OverviewTable ({ overview }) {
             {/*size="sm" cuts cell padding in half*/}
             {/*variant="dark" inverts colors*/}
             <Table striped bordered hover size="sm" variant="dark" responsive>
-                <thead className="thead-dark">
+                <thead>
                     <Head />
                 </thead>
                 <tbody>{handleOverview()}</tbody>

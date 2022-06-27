@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import Form from 'react-bootstrap/Form';
 /*controlled component: input form value controlled by React*/
 const DropDownSelect = (props) => {
     /*destructuring*/
@@ -8,8 +8,8 @@ const DropDownSelect = (props) => {
     if (options) {
         return (
             <div>
-                <strong>{name}</strong>:
-                <select
+                <Form.Select
+                    aria-label="select table entries per page"
                     name={name}
                     id={name}
                     className={name}
@@ -21,7 +21,7 @@ const DropDownSelect = (props) => {
                             {item}
                         </option>
                     ))}
-                </select>
+                </Form.Select>
             </div>
         );
     } else {

@@ -42,7 +42,7 @@ const GtfsFile = ({ name }) => {
                 bg="dark"
                 key="dark"
                 text="light"
-                className="mb-2"
+                className="m-1"
             >
                 {name}:<br />
                 <Badge pill bg="secondary">

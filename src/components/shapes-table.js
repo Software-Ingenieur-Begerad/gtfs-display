@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Table from 'react-bootstrap/Table';
 import Entry from './shapes-table-entry';
 import Head from './shapes-table-head';
 
@@ -29,12 +30,12 @@ function ShapesTable ({ aryData }) {
     /*return a React element*/
     return (
         <>
-            <table>
+            <Table striped bordered hover size="sm" variant="dark" responsive>
                 <thead>
                     <Head />
                 </thead>
                 <tbody>{handleAryData()}</tbody>
-            </table>
+            </Table>
         </>
     );
 }
