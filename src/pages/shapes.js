@@ -52,15 +52,7 @@ const Shapes = () => {
             defaultValue={selectOptions[2]}
         />
     );
-    const tableFct = () => {
-        let len = ary.length;
-        console.log('len: ' + len);
-        if (ary.length === '0') {
-            return <ShapesTable aryData={ary} />;
-        } else {
-            return <p>loading...</p>;
-        }
-    };
+    const table = <ShapesTable aryData={ary} />;
     return (
         <>
             <button onClick={handleClickPrev} autoFocus>
@@ -68,7 +60,7 @@ const Shapes = () => {
             </button>
             <button onClick={handleClickNext}>next</button>
             {select}
-            {tableFct()}
+            {table}
         </>
     );
 };
