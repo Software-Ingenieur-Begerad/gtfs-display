@@ -8,7 +8,8 @@ import Head from './shapes-table-head';
 /*destructure props object*/
 function ShapesTable ({ aryData }) {
     const handleAryData = () => {
-        if (aryData) {
+        console.log('aryData.length: ' + aryData.length);
+        if (aryData.length > 0) {
             //iterate over array
             return aryData.map((item, index) => {
                 return (
@@ -23,7 +24,7 @@ function ShapesTable ({ aryData }) {
             });
         } else {
             console.log('aryData NOT available');
-            return <p>loading...</p>;
+            return null;
         }
     };
 
