@@ -4,7 +4,9 @@ import Table from 'react-bootstrap/Table';
 import AgencyHead from './agency-table-head';
 import AgencyEntry from './agency-table-entry';
 import CalendarHead from './calendar-table-head';
+import CalendarEntry from './calendar-table-entry';
 import CalendarDatesHead from './calendar-dates-table-head';
+import CalendarDatesEntry from './calendar-dates-table-entry';
 import FrequenciesHead from './frequencies-table-head';
 import PathwaysHead from './pathways-table-head';
 import RouteHead from './routes-table-head';
@@ -14,7 +16,9 @@ import StopsEntry from './stops-table-entry';
 import StopsHead from './stops-table-head';
 import StopTimesHead from './stop-times-table-head';
 import TransfersHead from './transfers-table-head';
+import TransfersEntry from './transfers-table-entry';
 import TripsHead from './trips-table-head';
+import TripsEntry from './trips-table-entry';
 
 /*the simplest way to define a component is to write a JavaScript function*/
 /*destructure props object*/
@@ -133,10 +137,31 @@ function TableSwitch ({ aryData, name }) {
                         );
                         break;
                     case 'calendar':
-                        console.log('calendar');
+                        return (
+                            <CalendarEntry
+                                serviceId={item.service_id}
+                                monday={item.monday}
+                                tuesday={item.tuesday}
+                                wednesday={item.wednesday}
+                                thursday={item.thursday}
+                                friday={item.friday}
+                                saturday={item.saturday}
+                                sunday={item.sunday}
+                                startDate={item.start_date}
+                                endDate={item.end_date}
+                                key={index}
+                            />
+                        );
                         break;
                     case 'calendar_dates':
-                        console.log('calendar_dates');
+                        return (
+                            <CalendarDatesEntry
+                                serviceId={item.service_id}
+                                date={item.date}
+                                exceptionType={item.exception_type}
+                                key={index}
+                            />
+                        );
                         break;
                     case 'frequencies':
                         console.log('frequencies');
@@ -185,10 +210,36 @@ function TableSwitch ({ aryData, name }) {
                         console.log('stop_times');
                         break;
                     case 'transfers':
-                        console.log('tansfers');
+                        return (
+                            <TransfersEntry
+                                fromStopId={item.from_stop_id}
+                                toStopId={item.to_stop_id}
+                                fromRouteId={item.from_route_id}
+                                toRouteId={item.to_route_id}
+                                fromTripId={item.from_trip_id}
+                                toTripId={item.to_trip_id}
+                                transerType={item.transfer_type}
+                                minTransferTime={item.min_transfer_time}
+                                key={index}
+                            />
+                        );
                         break;
                     case 'trips':
-                        console.log('trips');
+                        return (
+                            <TripsEntry
+                                routeId={item.route_id}
+                                serviceId={item.service_id}
+                                tripId={item.trip_id}
+                                tripHeadsign={item.trip_headsign}
+                                tripShortName={item.trip_short_name}
+                                directionId={item.direction_id}
+                                blockId={item.block_id}
+                                shapeId={item.shape_id}
+                                wheelchairAccessible={item.wheelchair_accessible}
+                                bikesAllowed={item.bikes_allowed}
+                                key={index}
+                            />
+                        );
                         break;
                     default:
                         console.error('GTFS file unknown');
