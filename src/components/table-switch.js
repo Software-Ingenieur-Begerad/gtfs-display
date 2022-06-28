@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/Table';
+import AgencyHead from './agency-table-head';
+import AgencyEntry from './agency-table-entry';
 import ShapesEntry from './shapes-table-entry';
 import ShapesHead from './shapes-table-head';
 import StopsEntry from './stops-table-entry';
@@ -14,7 +16,11 @@ function TableSwitch ({ aryData, name }) {
         if (aryData.length > 0) {
             switch (name) {
                 case 'agency':
-                    console.log('agency');
+                    return (
+                        <thead>
+                            <AgencyHead />
+                        </thead>
+                    );
                     break;
                 case 'calendar':
                     console.log('calendar');
@@ -37,7 +43,6 @@ function TableSwitch ({ aryData, name }) {
                     );
                     break;
                 case 'stops':
-                    console.log('stops');
                     return (
                         <thead>
                             <StopsHead />
@@ -64,7 +69,17 @@ function TableSwitch ({ aryData, name }) {
             return aryData.map((item, index) => {
                 switch (name) {
                     case 'agency':
-                        console.log('agency');
+                        return (
+                            <AgencyEntry
+                                agencyId={item.agency_id}
+                                agencyName={item.agency_name}
+                                agencyUrl={item.agency_url}
+                                agencyTimezone={item.agency_timezone}
+                                agencyLanguage={item.agency_language}
+                                agencyPhone={item.agency_phone}
+                                key={index}
+                            />
+                        );
                         break;
                     case 'calendar':
                         console.log('calendar');
