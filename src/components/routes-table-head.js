@@ -9,7 +9,7 @@ const RoutesTableHead = () => {
             <td>route_long_name</td>
             <td>route_type</td>
             <td>route_color</td>
-	    <td>route_text_color</td>
+            <td>route_text_color</td>
             <td>route_desc</td>
         </tr>
     );

@@ -174,19 +174,19 @@ function TableSwitch ({ aryData, name }) {
                         console.log('pathways');
                         break;
                     case 'routes':
-		    return (
+                        return (
                             <RoutesEntry
-			    routeId={item.route_id}
-			    agencyId={item.agency_id}
-			    routeShortName={item.route_short_name}
-			    routeLongName={item.route_long_name}
-			    routeType={item.route_type}
-			    routeColor={item.route_color}
-			    routeTextColor={item.route_text_color}
-			    routeDesc={item.route_desc}
-			    key={index}
+                                routeId={item.route_id}
+                                agencyId={item.agency_id}
+                                routeShortName={item.route_short_name}
+                                routeLongName={item.route_long_name}
+                                routeType={item.route_type}
+                                routeColor={item.route_color}
+                                routeTextColor={item.route_text_color}
+                                routeDesc={item.route_desc}
+                                key={index}
                             />
-		    );
+                        );
                         break;
                     case 'shapes':
                         console.log('shapes');

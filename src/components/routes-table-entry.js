@@ -15,13 +15,13 @@ const RoutesTableEntry = ({
     return (
         <tr>
             <td>{routeId}</td>
-	    <td>{agencyId}</td>
-	    <td>{routeShortName}</td>
-	    <td>{routeLongName}</td>
-	    <td>{routeType}</td>
-	    <td>{routeColor}</td>
-	    <td>{routeTextColor}</td>
-	    <td>{routeDesc}</td>
+            <td>{agencyId}</td>
+            <td>{routeShortName}</td>
+            <td>{routeLongName}</td>
+            <td>{routeType}</td>
+            <td>{routeColor}</td>
+            <td>{routeTextColor}</td>
+            <td>{routeDesc}</td>
         </tr>
     );
 };
