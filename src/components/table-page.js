@@ -18,18 +18,15 @@ const TablePage = ({ name }) => {
         try {
             /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            console.log('name: ' + name);
+            //fetch data only if user selection is available
             if (name.indexOf(' ') === -1) {
                 const address = `https://v1gtfs.vbn.api.swingbe.de/${name}-oset-limit?oset=${oset}&limit=${limit}`;
-                console.log('address: ' + address);
                 const res = await axios.get(address);
                 /*set state*/
                 setAry((ary) => res.data);
-            } else {
-                console.log('white space');
             }
         } catch (err) {
-            console.log('err.message: ' + err.message);
+            console.error('err.message: ' + err.message);
             //TODO handle error
             setAry((ary) => []);
         }
@@ -52,7 +49,6 @@ const TablePage = ({ name }) => {
         setOset((oset) => ++oset);
     };
     const handleChangeLimit = (event) => {
-    //console.log('event.target.value: '+event.target.value);
         setLimit((limit) => event.target.value);
     };
     const select = (
@@ -63,9 +59,7 @@ const TablePage = ({ name }) => {
             defaultValue={selectOptions[0]}
         />
     );
-    const tableSwitch = <TablePageSwitch aryData={ary} name={name} />;
-    if (ary.length > 0 && name.indexOf(' ') === -1) {
-        console.log('ary && NO white space');
+    if (name.indexOf(' ') === -1) {
         return (
             <>
                 <Stack direction="horizontal" gap={1} className="m-1">
@@ -79,12 +73,11 @@ const TablePage = ({ name }) => {
             next
                     </Button>
                 </Stack>
-                {tableSwitch}
+                <TablePageSwitch aryData={ary} name={name} />
             </>
         );
     } else {
-        console.log('white space');
-        return null;
+        return <p>Please select file.</p>;
     }
 };
 
