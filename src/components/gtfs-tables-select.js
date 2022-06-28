@@ -15,10 +15,7 @@ const DropDownSelect = (props) => {
                     className={name}
                     onChange={onChange}
                 >
-		    <option defaultValue
-		    >
-                        {defaultValue}
-		    </option>
+                    <option defaultValue>{defaultValue}</option>
                     {options.map((item, index) => (
                         <option key={index} value={item['table_name']}>
                             {item['table_name']}

@@ -25,8 +25,6 @@ const GtfsTableSelection = (props) => {
         return (
             <div>
                 {select}
-                <p>options.length: {options.length}</p>
-                <p>gtfsFile: {gtfsFile}</p>
                 <GtfsTable name={gtfsFile} />
             </div>
         );

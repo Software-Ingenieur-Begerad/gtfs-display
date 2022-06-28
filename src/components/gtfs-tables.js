@@ -33,7 +33,7 @@ const GtfsTables = () => {
     if (tables) {
         return (
             <>
-                <GtfsTableSelection options={tables}/>
+                <GtfsTableSelection options={tables} />
             </>
         );
     } else {
