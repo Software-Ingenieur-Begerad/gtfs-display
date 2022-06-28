@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /*destructure props object*/
-const TableEntry = ({ shapeId, shapePtLat, shapePtLon, shapePtSequence }) => {
+const ShapesTableEntry = ({
+    shapeId,
+    shapePtLat,
+    shapePtLon,
+    shapePtSequence
+}) => {
     return (
         <tr>
             <td>{shapeId}</td>
@@ -13,11 +18,11 @@ const TableEntry = ({ shapeId, shapePtLat, shapePtLon, shapePtSequence }) => {
     );
 };
 
-TableEntry.propTypes = {
+ShapesTableEntry.propTypes = {
     shapeId: PropTypes.string,
     shapePtLat: PropTypes.number,
     shapePtLon: PropTypes.number,
     shapePtSequence: PropTypes.number
 };
 
-export default TableEntry;
+export default ShapesTableEntry;

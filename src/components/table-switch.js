@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/Table';
 import ShapesEntry from './shapes-table-entry';
 import ShapesHead from './shapes-table-head';
+import StopsEntry from './stops-table-entry';
+import StopsHead from './stops-table-head';
 
 /*the simplest way to define a component is to write a JavaScript function*/
 /*destructure props object*/
-function GtfsTableSwitch ({ aryData, name }) {
+function TableSwitch ({ aryData, name }) {
     const handleTableHead = () => {
         console.log('aryData.length: ' + aryData.length);
         if (aryData.length > 0) {
@@ -36,6 +38,11 @@ function GtfsTableSwitch ({ aryData, name }) {
                     break;
                 case 'stops':
                     console.log('stops');
+                    return (
+                        <thead>
+                            <StopsHead />
+                        </thead>
+                    );
                     break;
                 case 'transitions':
                     console.log('tansitions');
@@ -74,19 +81,33 @@ function GtfsTableSwitch ({ aryData, name }) {
                     case 'shapes':
                         console.log('shapes');
                         return (
-                            <tbody>
-                                <ShapesEntry
-                                    shapeId={item.shape_id}
-                                    shapePtLat={item.shape_pt_lat}
-                                    shapePtLon={item.shape_pt_lon}
-                                    shapePtSequence={item.shape_pt_sequence}
-                                    key={index}
-                                />
-                            </tbody>
+                            <ShapesEntry
+                                shapeId={item.shape_id}
+                                shapePtLat={item.shape_pt_lat}
+                                shapePtLon={item.shape_pt_lon}
+                                shapePtSequence={item.shape_pt_sequence}
+                                key={index}
+                            />
                         );
                         break;
                     case 'stops':
                         console.log('stops');
+                        return (
+                            <StopsEntry
+                                stopId={item.stop_id}
+                                stopCode={item.stop_code}
+                                stopName={item.stop_name}
+                                stopDesc={item.stop_desc}
+                                stopLat={item.stop_lat}
+                                stopLon={item.stop_lon}
+                                locationType={item.location_type}
+                                parentStation={item.parent_station}
+                                wheelchairBoarding={item.wheelchair_boarding}
+                                platformCode={item.platform_code}
+                                zoneId={item.zone_id}
+                                key={index}
+                            />
+                        );
                         break;
                     case 'transitions':
                         console.log('tansitions');
@@ -107,13 +128,13 @@ function GtfsTableSwitch ({ aryData, name }) {
         <>
             <Table striped bordered hover size="sm" variant="dark" responsive>
                 {handleTableHead()}
-                {handleTableEntry()}
+                <tbody>{handleTableEntry()}</tbody>
             </Table>
         </>
     );
 }
-GtfsTableSwitch.propTypes = {
+TableSwitch.propTypes = {
     aryData: PropTypes.array,
     name: PropTypes.string
 };
-export default GtfsTableSwitch;
+export default TableSwitch;

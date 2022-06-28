@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TableHead = () => {
+const ShapesTableHead = () => {
     return (
         <tr>
             <td>shape_id</td>
@@ -11,4 +11,4 @@ const TableHead = () => {
     );
 };
 
-export default TableHead;
+export default ShapesTableHead;

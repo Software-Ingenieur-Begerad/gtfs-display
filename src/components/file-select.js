@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 /*controlled component: input form value controlled by React*/
-const DropDownSelect = (props) => {
+const FileSelect = (props) => {
     /*destructuring*/
     const { options, name, onChange, defaultValue } = props;
-    if (options) {
+    console.log('dValue: ' + defaultValue);
+    if (options.length > 0) {
         return (
             <div>
                 <Form.Select
@@ -27,15 +28,15 @@ const DropDownSelect = (props) => {
     } else {
         return (
             <div>
-                <p>Select failed.</p>
+                <p>Select loading...</p>
             </div>
         );
     }
 };
 
-export default DropDownSelect;
+export default FileSelect;
 
-DropDownSelect.propTypes = {
+FileSelect.propTypes = {
     name: PropTypes.string,
     defaultValue: PropTypes.string,
     onChange: PropTypes.func,

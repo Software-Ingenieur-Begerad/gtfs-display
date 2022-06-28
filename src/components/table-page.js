@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import DropDownSelect from '../components/drop-down-select';
 const selectOptions = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000];
-import GtfsTableSwitch from '../components/gtfs-table-switch';
+import TablePageSwitch from '../components/table-switch';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 //destructure props
-const GtfsTable = ({ name }) => {
+const TablePage = ({ name }) => {
     /*store and initialise data in function component state*/
     const [oset, setOset] = useState(1);
     const [limit, setLimit] = useState(selectOptions[0]);
@@ -63,7 +63,7 @@ const GtfsTable = ({ name }) => {
             defaultValue={selectOptions[0]}
         />
     );
-    const tableSwitch = <GtfsTableSwitch aryData={ary} name={name} />;
+    const tableSwitch = <TablePageSwitch aryData={ary} name={name} />;
     if (ary.length > 0 && name.indexOf(' ') === -1) {
         console.log('ary && NO white space');
         return (
@@ -88,8 +88,8 @@ const GtfsTable = ({ name }) => {
     }
 };
 
-GtfsTable.propTypes = {
+TablePage.propTypes = {
     name: PropTypes.string
 };
 
-export default GtfsTable;
+export default TablePage;
