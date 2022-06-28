@@ -9,7 +9,8 @@ import CalendarDatesHead from './calendar-dates-table-head';
 import CalendarDatesEntry from './calendar-dates-table-entry';
 import FrequenciesHead from './frequencies-table-head';
 import PathwaysHead from './pathways-table-head';
-import RouteHead from './routes-table-head';
+import RoutesHead from './routes-table-head';
+import RoutesEntry from './routes-table-entry';
 import ShapesEntry from './shapes-table-entry';
 import ShapesHead from './shapes-table-head';
 import StopsEntry from './stops-table-entry';
@@ -69,7 +70,7 @@ function TableSwitch ({ aryData, name }) {
                 case 'routes':
                     return (
                         <thead>
-                            <RouteHead />
+                            <RoutesHead />
                         </thead>
                     );
                     break;
@@ -173,7 +174,19 @@ function TableSwitch ({ aryData, name }) {
                         console.log('pathways');
                         break;
                     case 'routes':
-                        console.log('routes');
+		    return (
+                            <RoutesEntry
+			    routeId={item.route_id}
+			    agencyId={item.agency_id}
+			    routeShortName={item.route_short_name}
+			    routeLongName={item.route_long_name}
+			    routeType={item.route_type}
+			    routeColor={item.route_color}
+			    routeTextColor={item.route_text_color}
+			    routeDesc={item.route_desc}
+			    key={index}
+                            />
+		    );
                         break;
                     case 'shapes':
                         console.log('shapes');
