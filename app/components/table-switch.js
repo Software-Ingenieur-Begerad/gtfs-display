@@ -36,10 +36,7 @@ function TableSwitch ({name, isFetched, oset, limit, filter}) {
         }
     };
     useEffect(()=>{
-	setAryFiltered((aryFiltered)=>{
-	    let filtered=filterData(ary,name,filter);
-	    return filtered;
-	});
+	setAryFiltered(aryFiltered=>filterData(ary,name,filter));
     },[filter]);
     useEffect(() => {
 	/*effect goes here*/
