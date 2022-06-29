@@ -59,7 +59,7 @@ const TablePage = ({ name }) => {
             defaultValue={selectOptions[0]}
         />
     );
-    if (name.indexOf(' ') === -1) {
+    if (ary.length > 0 && name.indexOf(' ') === -1) {
         return (
             <>
                 <Stack direction="horizontal" gap={1} className="m-1">

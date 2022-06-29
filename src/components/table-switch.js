@@ -11,11 +11,12 @@ import FrequenciesHead from './frequencies-table-head';
 import PathwaysHead from './pathways-table-head';
 import RoutesHead from './routes-table-head';
 import RoutesEntry from './routes-table-entry';
-import ShapesEntry from './shapes-table-entry';
 import ShapesHead from './shapes-table-head';
-import StopsEntry from './stops-table-entry';
+import ShapesEntry from './shapes-table-entry';
 import StopsHead from './stops-table-head';
+import StopsEntry from './stops-table-entry';
 import StopTimesHead from './stop-times-table-head';
+import StopTimesEntry from './stop-times-table-entry';
 import TransfersHead from './transfers-table-head';
 import TransfersEntry from './transfers-table-entry';
 import TripsHead from './trips-table-head';
@@ -27,96 +28,62 @@ function TableSwitch ({ aryData, name }) {
     const handleTableHead = () => {
         console.log('aryData.length: ' + aryData.length);
         console.log('TableSwitch name: ' + name);
-        if (aryData.length > 0) {
-            switch (name) {
-                case 'agency':
-                    return (
-                        <thead>
-                            <AgencyHead />
-                        </thead>
-                    );
-                    break;
-                case 'calendar':
-                    return (
-                        <thead>
-                            <CalendarHead />
-                        </thead>
-                    );
-                    break;
-                case 'calendar_dates':
-                    return (
-                        <thead>
-                            <CalendarDatesHead />
-                        </thead>
-                    );
-                    break;
-                case 'frequencies':
-                    return (
-                        <thead>
-                            <FrequenciesHead />
-                        </thead>
-                    );
-                    break;
-                case 'level':
-                    console.log('level');
-                    break;
-                case 'pathways':
-                    return (
-                        <thead>
-                            <PathwaysHead />
-                        </thead>
-                    );
-                    break;
-                case 'routes':
-                    return (
-                        <thead>
-                            <RoutesHead />
-                        </thead>
-                    );
-                    break;
-                case 'shapes':
-                    console.log('shapes');
-                    return (
-                        <thead>
-                            <ShapesHead />
-                        </thead>
-                    );
-                    break;
-                case 'stops':
-                    return (
-                        <thead>
-                            <StopsHead />
-                        </thead>
-                    );
-                    break;
-                case 'stop_times':
-                    return (
-                        <thead>
-                            <StopTimesHead />
-                        </thead>
-                    );
-                    break;
-                case 'transfers':
-                    return (
-                        <thead>
-                            <TransfersHead />
-                        </thead>
-                    );
-                    break;
-                case 'trips':
-                    return (
-                        <thead>
-                            <TripsHead />
-                        </thead>
-                    );
-                    break;
-                default:
-                    console.log('default');
-                    console.error('GTFS file unknown');
-            }
-        } else {
-            console.log('aryData NOT available');
-            return null;
+        switch (name) {
+            case 'agency':
+                return <AgencyHead />;
+                break;
+            case 'calendar':
+                return (
+                    <CalendarHead />
+                );
+                break;
+            case 'calendar_dates':
+                return (
+                    <CalendarDatesHead />
+                );
+                break;
+            case 'frequencies':
+                return (
+                    <FrequenciesHead />
+                );
+                break;
+            case 'pathways':
+                return (
+                    <PathwaysHead />
+                );
+                break;
+            case 'routes':
+                return (
+                    <RoutesHead />
+                );
+                break;
+            case 'shapes':
+                return (
+                    <ShapesHead />
+                );
+                break;
+            case 'stops':
+                return (
+                    <StopsHead />
+                );
+                break;
+            case 'stop_times':
+                return (
+                    <StopTimesHead />
+                );
+                break;
+            case 'transfers':
+                return (
+                    <TransfersHead />
+                );
+                break;
+            case 'trips':
+                return (
+                    <TripsHead />
+                );
+                break;
+            default:
+                console.error('file unknown');
         }
     };
     const handleTableEntry = () => {
@@ -167,12 +134,6 @@ function TableSwitch ({ aryData, name }) {
                     case 'frequencies':
                         console.log('frequencies');
                         break;
-                    case 'level':
-                        console.log('level');
-                        break;
-                    case 'pathways':
-                        console.log('pathways');
-                        break;
                     case 'routes':
                         return (
                             <RoutesEntry
@@ -189,7 +150,6 @@ function TableSwitch ({ aryData, name }) {
                         );
                         break;
                     case 'shapes':
-                        console.log('shapes');
                         return (
                             <ShapesEntry
                                 shapeId={item.shape_id}
@@ -201,7 +161,6 @@ function TableSwitch ({ aryData, name }) {
                         );
                         break;
                     case 'stops':
-                        console.log('stops');
                         return (
                             <StopsEntry
                                 stopId={item.stop_id}
@@ -220,7 +179,37 @@ function TableSwitch ({ aryData, name }) {
                         );
                         break;
                     case 'stop_times':
-                        console.log('stop_times');
+		    let arrivalTime = item.arrival_time;
+		    /*TODO Why is this condition neccessary?*/
+		    if (arrivalTime) {
+                            return (
+                                <StopTimesEntry
+                                    tripId={item.trip_id}
+                                    arrivalTimeHours={item.arrival_time['hours']}
+				    arrivalTimeMinutes={item.arrival_time['minutes']}
+				    departureTimeHours={item.departure_time['hours']}
+				    departureTimeMinutes={item.departure_time['minutes']}
+                                    stopId={item.stop_id}
+                                    stopSequence={item.stop_sequence}
+                                    pickupType={item.pickup_type}
+                                    dropOffType={item.drop_off_type}
+                                    stopHeadsign={item.stop_headsign}
+                                    key={index}
+                                />
+                            );
+		    } else {
+                            return (
+                                <StopTimesEntry
+                                    tripId={item.trip_id}
+                                    stopId={item.stop_id}
+                                    stopSequence={item.stop_sequence}
+                                    pickupType={item.pickup_type}
+                                    dropOffType={item.drop_off_type}
+                                    stopHeadsign={item.stop_headsign}
+                                    key={index}
+                                />
+                            );
+		    }
                         break;
                     case 'transfers':
                         return (
@@ -255,7 +244,7 @@ function TableSwitch ({ aryData, name }) {
                         );
                         break;
                     default:
-                        console.error('GTFS file unknown');
+                        console.error('file unknown');
                 }
             });
         }
@@ -263,9 +252,20 @@ function TableSwitch ({ aryData, name }) {
     /*return a React element*/
     return (
         <>
-            <Table striped bordered hover size="sm" variant="dark" responsive>
-                {handleTableHead()}
-                <tbody>{handleTableEntry()}</tbody>
+            <Table
+                striped
+                bordered
+                hover
+                size="sm"
+                variant="dark"
+                responsive
+	    >
+                <thead>
+                    {handleTableHead()}
+                </thead>
+                <tbody>
+		    {handleTableEntry()}
+                </tbody>
             </Table>
         </>
     );
