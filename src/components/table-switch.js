@@ -8,6 +8,7 @@ import CalendarEntry from './calendar-table-entry';
 import CalendarDatesHead from './calendar-dates-table-head';
 import CalendarDatesEntry from './calendar-dates-table-entry';
 import FrequenciesHead from './frequencies-table-head';
+import FrequenciesEntry from './frequencies-table-entry';
 import PathwaysHead from './pathways-table-head';
 import RoutesHead from './routes-table-head';
 import RoutesEntry from './routes-table-entry';
@@ -26,61 +27,39 @@ import TripsEntry from './trips-table-entry';
 /*destructure props object*/
 function TableSwitch ({ aryData, name }) {
     const handleTableHead = () => {
-        console.log('aryData.length: ' + aryData.length);
-        console.log('TableSwitch name: ' + name);
         switch (name) {
             case 'agency':
                 return <AgencyHead />;
                 break;
             case 'calendar':
-                return (
-                    <CalendarHead />
-                );
+                return <CalendarHead />;
                 break;
             case 'calendar_dates':
-                return (
-                    <CalendarDatesHead />
-                );
+                return <CalendarDatesHead />;
                 break;
             case 'frequencies':
-                return (
-                    <FrequenciesHead />
-                );
+                return <FrequenciesHead />;
                 break;
             case 'pathways':
-                return (
-                    <PathwaysHead />
-                );
+                return <PathwaysHead />;
                 break;
             case 'routes':
-                return (
-                    <RoutesHead />
-                );
+                return <RoutesHead />;
                 break;
             case 'shapes':
-                return (
-                    <ShapesHead />
-                );
+                return <ShapesHead />;
                 break;
             case 'stops':
-                return (
-                    <StopsHead />
-                );
+                return <StopsHead />;
                 break;
             case 'stop_times':
-                return (
-                    <StopTimesHead />
-                );
+                return <StopTimesHead />;
                 break;
             case 'transfers':
-                return (
-                    <TransfersHead />
-                );
+                return <TransfersHead />;
                 break;
             case 'trips':
-                return (
-                    <TripsHead />
-                );
+                return <TripsHead />;
                 break;
             default:
                 console.error('file unknown');
@@ -132,7 +111,16 @@ function TableSwitch ({ aryData, name }) {
                         );
                         break;
                     case 'frequencies':
-                        console.log('frequencies');
+                        return (
+                            <FrequenciesEntry
+                                tripId={item.trip_id}
+                                startTime={item.start_time}
+                                endTime={item.end_time}
+                                headwaySecs={item.headway_secs}
+                                exactTimes={item.exact_times}
+                                key={index}
+                            />
+                        );
                         break;
                     case 'routes':
                         return (
@@ -179,16 +167,16 @@ function TableSwitch ({ aryData, name }) {
                         );
                         break;
                     case 'stop_times':
-		    let arrivalTime = item.arrival_time;
-		    /*TODO Why is this condition neccessary?*/
-		    if (arrivalTime) {
+                        let arrivalTime = item.arrival_time;
+                        /*TODO Why is this condition neccessary?*/
+                        if (arrivalTime) {
                             return (
                                 <StopTimesEntry
                                     tripId={item.trip_id}
                                     arrivalTimeHours={item.arrival_time['hours']}
-				    arrivalTimeMinutes={item.arrival_time['minutes']}
-				    departureTimeHours={item.departure_time['hours']}
-				    departureTimeMinutes={item.departure_time['minutes']}
+                                    arrivalTimeMinutes={item.arrival_time['minutes']}
+                                    departureTimeHours={item.departure_time['hours']}
+                                    departureTimeMinutes={item.departure_time['minutes']}
                                     stopId={item.stop_id}
                                     stopSequence={item.stop_sequence}
                                     pickupType={item.pickup_type}
@@ -197,7 +185,7 @@ function TableSwitch ({ aryData, name }) {
                                     key={index}
                                 />
                             );
-		    } else {
+                        } else {
                             return (
                                 <StopTimesEntry
                                     tripId={item.trip_id}
@@ -209,7 +197,7 @@ function TableSwitch ({ aryData, name }) {
                                     key={index}
                                 />
                             );
-		    }
+                        }
                         break;
                     case 'transfers':
                         return (
@@ -220,7 +208,7 @@ function TableSwitch ({ aryData, name }) {
                                 toRouteId={item.to_route_id}
                                 fromTripId={item.from_trip_id}
                                 toTripId={item.to_trip_id}
-                                transerType={item.transfer_type}
+                                transferType={item.transfer_type}
                                 minTransferTime={item.min_transfer_time}
                                 key={index}
                             />
@@ -252,20 +240,9 @@ function TableSwitch ({ aryData, name }) {
     /*return a React element*/
     return (
         <>
-            <Table
-                striped
-                bordered
-                hover
-                size="sm"
-                variant="dark"
-                responsive
-	    >
-                <thead>
-                    {handleTableHead()}
-                </thead>
-                <tbody>
-		    {handleTableEntry()}
-                </tbody>
+            <Table striped bordered hover size="sm" variant="dark" responsive>
+                <thead>{handleTableHead()}</thead>
+                <tbody>{handleTableEntry()}</tbody>
             </Table>
         </>
     );

@@ -13,10 +13,6 @@ const StopTimesTableHead = () => {
             <td>pickup_type</td>
             <td>drop_off_type</td>
             <td>stop_headsign</td>
-            <td>continuous_pickup</td>
-            <td>continuous_drop_off</td>
-            <td>shape_dist_traveled</td>
-            <td>timepoint</td>
         </tr>
     );
 };

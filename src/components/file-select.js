@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
-/*controlled component: input form value controlled by React*/
-const FileSelect = (props) => {
-    /*destructuring*/
-    const { options, name, onChange, defaultValue } = props;
-    console.log('dValue: ' + defaultValue);
+const FileSelect = ({ options, name, onChange, defaultValue }) => {
     if (options.length > 0) {
         return (
             <div>
