@@ -9,6 +9,8 @@ import CalendarDatesHead from './calendar-dates-table-head';
 import CalendarDatesEntry from './calendar-dates-table-entry';
 import FrequenciesHead from './frequencies-table-head';
 import FrequenciesEntry from './frequencies-table-entry';
+import LevelsHead from './levels-table-head';
+import LevelsEntry from './levels-table-entry';
 import PathwaysHead from './pathways-table-head';
 import RoutesHead from './routes-table-head';
 import RoutesEntry from './routes-table-entry';
@@ -40,6 +42,9 @@ function TableSwitch ({ aryData, name }) {
             case 'frequencies':
                 return <FrequenciesHead />;
                 break;
+            case 'levels':
+                return <LevelsHead />;
+                break;
             case 'pathways':
                 return <PathwaysHead />;
                 break;
@@ -66,6 +71,7 @@ function TableSwitch ({ aryData, name }) {
         }
     };
     const handleTableEntry = () => {
+        /*TODO add table entry for pathways*/
         if (aryData.length > 0) {
             //iterate over array
             return aryData.map((item, index) => {
@@ -118,6 +124,15 @@ function TableSwitch ({ aryData, name }) {
                                 endTime={item.end_time}
                                 headwaySecs={item.headway_secs}
                                 exactTimes={item.exact_times}
+                                key={index}
+                            />
+                        );
+                        break;
+                    case 'levels':
+                        return (
+                            <LevelsEntry
+                                levelId={item.level_id}
+                                levelIndex={item.level_index}
                                 key={index}
                             />
                         );

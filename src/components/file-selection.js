@@ -12,10 +12,10 @@ const FileSelection = ({ options }) => {
         return (
             <div>
                 <FileSelect
-		    name="file"
-		    onChange={handleChangeGtfsFile}
-		    options={options}
-		    defaultValue={defaultGtfsFile}
+                    name="file"
+                    onChange={handleChangeGtfsFile}
+                    options={options}
+                    defaultValue={defaultGtfsFile}
                 />
                 <TablePage name={gtfsFile} />
             </div>

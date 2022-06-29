@@ -4,9 +4,9 @@ import FileSelection from '../components/file-selection';
 const Tables = ({ data }) => {
     if (data.length > 0) {
         return (
-	    <>
+            <>
                 <FileSelection options={data} />
-	    </>
+            </>
         );
     } else {
         return <p>Files loading...</p>;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TipsTableHead = () => {
+const TripsTableHead = () => {
     return (
         <tr>
             <td>route_id</td>
@@ -11,10 +11,10 @@ const TipsTableHead = () => {
             <td>direction_id</td>
             <td>block_id</td>
             <td>shape_id</td>
-            <td>wheelchari_accessible</td>
+            <td>wheelchair_accessible</td>
             <td>bikes_allowed</td>
         </tr>
     );
 };
 
-export default TipsTableHead;
+export default TripsTableHead;
