@@ -71,7 +71,7 @@ function TableSwitch ({ aryData, name }) {
         }
     };
     const handleTableEntry = () => {
-        /*TODO add table entry for pathways*/
+    /*TODO add table entry for pathways*/
         if (aryData.length > 0) {
             //iterate over array
             return aryData.map((item, index) => {
