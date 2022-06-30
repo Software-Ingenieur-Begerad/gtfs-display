@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import GtfsValidatorReport from '../components/gtfs-validator-report.js';
 import GtfsFiles from '../components/gtfs-files.js';
 import axios from 'axios';
 import Tables from '../components/tables.js';
@@ -33,6 +34,7 @@ const Homepage = () => {
     }, []);
     return (
         <>
+            <GtfsValidatorReport />
             <GtfsFiles />
             <Tables data={tables} />
         </>
