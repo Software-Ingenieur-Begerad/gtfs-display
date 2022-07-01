@@ -7,8 +7,7 @@ import Head from './shapes-table-head';
 /*the simplest way to define a component is to write a JavaScript function*/
 /*destructure props object*/
 function ShapesTable ({ aryData }) {
-    const handleAryData = () => {
-        console.log('aryData.length: ' + aryData.length);
+    const handleAryData = () => {        
         if (aryData.length > 0) {
             //iterate over array
             return aryData.map((item, index) => {
@@ -23,7 +22,7 @@ function ShapesTable ({ aryData }) {
                 );
             });
         } else {
-            console.log('aryData NOT available');
+            console.error('aryData NOT available');
             return null;
         }
     };
