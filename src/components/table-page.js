@@ -6,7 +6,6 @@ import TablePageSwitch from '../components/table-switch';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
-//destructure props
 const TablePage = ({ name }) => {
     /*store and initialise data in function component state*/
     const [oset, setOset] = useState(1);
@@ -51,14 +50,6 @@ const TablePage = ({ name }) => {
     const handleChangeLimit = (event) => {
         setLimit((limit) => event.target.value);
     };
-    const select = (
-        <Select
-            name="Limit"
-            onChange={handleChangeLimit}
-            options={selectOptions}
-            defaultValue={selectOptions[0]}
-        />
-    );
     if (ary.length > 0 && name.indexOf(' ') === -1) {
         return (
             <>
@@ -66,12 +57,16 @@ const TablePage = ({ name }) => {
                     <Button variant="secondary" onClick={handleClickPrev}>
             prev
                     </Button>
-                    <div className="vr" />
-                    {select}
-                    <div className="vr" />
                     <Button variant="secondary" onClick={handleClickNext}>
             next
                     </Button>
+		    <Select
+			defaultValue={selectOptions[0]}
+			id="tabePageLimit"
+			name="tablePageLimit"
+			onChange={handleChangeLimit}
+			options={selectOptions}
+		    />
                 </Stack>
                 <TablePageSwitch aryData={ary} name={name} />
             </>
