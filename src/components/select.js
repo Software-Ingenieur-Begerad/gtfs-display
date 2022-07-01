@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
-/*controlled component: input form value controlled by React*/
-const DropDownSelect = (props) => {
-    /*destructuring*/
-    const { options, name, onChange, defaultValue } = props;
+/*controlled component: select controlled by React*/
+const Select = ({defaultValue, id, name, onChange, options, title}) => {
     if (options) {
         return (
-            <div>
                 <Form.Select
                     aria-label="select table entries per page"
-                    name={name}
-                    id={name}
                     className={name}
-                    onChange={onChange}
                     defaultValue={defaultValue}
+                    name={name}
+                    id={id}
+                    onChange={onChange}
+                    title={title}
                 >
                     {options.map((item, index) => (
                         <option key={index} value={item}>
@@ -22,22 +20,17 @@ const DropDownSelect = (props) => {
                         </option>
                     ))}
                 </Form.Select>
-            </div>
         );
     } else {
-        return (
-            <div>
-                <p>Select failed.</p>
-            </div>
-        );
+        return <p>Select options unavailable.</p>;
     }
 };
-
-export default DropDownSelect;
-
-DropDownSelect.propTypes = {
+export default Select;
+Select.propTypes = {
+    id: PropTypes.string,
     name: PropTypes.string,
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
-    options: PropTypes.array
+    options: PropTypes.array,
+    title: PropTypes.string
 };

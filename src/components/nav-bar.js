@@ -6,7 +6,7 @@ function NavigationBar () {
     return (
         <Navbar collapseOnSelect fixed="top" bg="dark" expand="xxl" variant="dark">
       //TODO make brand available through configuration
-            <Navbar.Brand href="/">GTFS-Display</Navbar.Brand>
+            <Navbar.Brand href="/">GTFS Display</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

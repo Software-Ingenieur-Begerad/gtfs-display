@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import DropDownSelect from '../components/drop-down-select';
+import Select from '../components/select';
 const selectOptions = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000];
 import ShapesTable from '../components/shapes-table';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
+import InputSearch from '../components/input-search';
 const Shapes = () => {
     /*store and initialise data in function component state*/
     const [oset, setOset] = useState(1);
     const [limit, setLimit] = useState(selectOptions[2]);
     const [ary, setAry] = useState([]);
-
+    const [searchField, setSearchField] = useState('');
+    const filteredAry = ary.filter((item, index) => {
+        //console.log('aryData index: ' + index);
+        return (
+            item.shape_id.toLowerCase().includes(searchField.toLowerCase()) ||
+		item.shape_pt_lat.toString().includes(searchField) ||
+		item.shape_pt_lon.toString().includes(searchField) ||
+		item.shape_pt_sequence.toString().includes(searchField)
+        );
+    });
     /*fetch ary in a JavaScript function*/
     const fetch = async () => {
         try {
@@ -46,29 +56,36 @@ const Shapes = () => {
     //console.log('event.target.value: '+event.target.value);
         setLimit((limit) => event.target.value);
     };
-    const select = (
-        <DropDownSelect
-            name="Limit"
-            onChange={handleChangeLimit}
-            options={selectOptions}
-            defaultValue={selectOptions[2]}
-        />
-    );
-    const table = <ShapesTable aryData={ary} />;
+    const handleSearch = (e) => {
+        setSearchField(e.target.value);
+    };
     return (
         <>
             <Stack direction="horizontal" gap={1} className="m-1">
                 <Button variant="secondary" onClick={handleClickPrev} autoFocus>
           prev
                 </Button>
-                <div className="vr" />
-                {select}
-                <div className="vr" />
                 <Button variant="secondary" onClick={handleClickNext}>
           next
                 </Button>
+		<Select
+		    defaultValue={selectOptions[2]}
+		    id="shapesLimit"
+		    name="shapesLimit"
+		    onChange={handleChangeLimit}
+		    options={selectOptions}
+		/>
+		<InputSearch
+		    id="shapesSearch"
+		    name="shapesSearch"
+                    onChange={handleSearch}
+                    placeholder="Search table globally"
+                    type="search"
+                    title="Enter search value"
+		    value={searchField}
+		/>
             </Stack>
-            {table}
+	    <ShapesTable aryData={filteredAry} />
         </>
     );
 };
