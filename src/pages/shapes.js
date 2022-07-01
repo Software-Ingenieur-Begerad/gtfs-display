@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Select from '../components/select';
-const selectOptions = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000];
+import {selectOptions} from '../utils/select-options';
 import ShapesTable from '../components/shapes-table';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
@@ -13,7 +13,6 @@ const Shapes = () => {
     const [ary, setAry] = useState([]);
     const [searchField, setSearchField] = useState('');
     const filteredAry = ary.filter((item, index) => {
-        //console.log('aryData index: ' + index);
         return (
             item.shape_id.toLowerCase().includes(searchField.toLowerCase()) ||
 		item.shape_pt_lat.toString().includes(searchField) ||
@@ -37,14 +36,12 @@ const Shapes = () => {
     };
 
     /*this hook is run after a DOM update. Changing state migh result in an infinite loop*/
-    useEffect(() => {
-    /*effect goes here*/
-
         /*hook need to be placed in body of the function component in which it is used*/
+    useEffect(() => {
+	/*effect goes here*/
         fetch();
-
-    /*use an empty dependency array to ensure the hook is running only once*/
-    /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
+	/*use an empty dependency array to ensure the hook is running only once*/
+	/*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
     }, [oset, limit]);
     const handleClickPrev = () => {
         setOset((oset) => (oset > 1 ? --oset : oset));
@@ -53,7 +50,6 @@ const Shapes = () => {
         setOset((oset) => ++oset);
     };
     const handleChangeLimit = (event) => {
-    //console.log('event.target.value: '+event.target.value);
         setLimit((limit) => event.target.value);
     };
     const handleSearch = (e) => {

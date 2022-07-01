@@ -1,5 +1,4 @@
 import React from 'react';
-
 const AgencyTableHead = () => {
     return (
         <tr>
@@ -7,10 +6,9 @@ const AgencyTableHead = () => {
             <td>agency_name</td>
             <td>agency_url</td>
             <td>agency_timezone</td>
-            <td>agency_language</td>
+            <td>agency_lang</td>
             <td>agency_phone</td>
         </tr>
     );
 };
-
 export default AgencyTableHead;
