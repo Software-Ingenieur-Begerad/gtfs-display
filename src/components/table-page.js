@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import DropDownSelect from '../components/drop-down-select';
+import Select from '../components/select';
 const selectOptions = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000];
 import TablePageSwitch from '../components/table-switch';
 import Stack from 'react-bootstrap/Stack';
@@ -52,7 +52,7 @@ const TablePage = ({ name }) => {
         setLimit((limit) => event.target.value);
     };
     const select = (
-        <DropDownSelect
+        <Select
             name="Limit"
             onChange={handleChangeLimit}
             options={selectOptions}
