@@ -21,15 +21,13 @@ module.exports = {
     },
     module: {
 	rules: [
-	    //process any .js or .jsx file with Babel and Eslint loader
+	    //process any .js or .jsx file with Babel
 	    {
 		test: /\.(js|jsx)$/,
 		exclude: /node_modules/,
 		use: [
 		    //use babel-loader to transpile these file types
-		    'babel-loader',
-		    //use esling-loader to hook JavaScript linter ESLint into Webpack
-		    'eslint-loader'
+		    'babel-loader'
 		]
 	    },
 	    //process any .css file with CSS loader
