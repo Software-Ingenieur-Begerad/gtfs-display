@@ -6,7 +6,7 @@ const Contact = () => {
 
             <p>
         For questions about this website please do not hesitate to reach out to{' '}
-                <a href="mailto:dialog@begerad.de">Software Ingenieur Begerad</a>.
+                <a href="mailto:dialog@swingbe.de">Software Ingenieur Begerad</a>.
             </p>
             <p>
         Source code has been made public on{' '}
