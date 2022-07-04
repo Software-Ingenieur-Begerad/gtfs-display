@@ -1,26 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import TableFilterColumn from './table-filter-column';
-import headings from './trips-table-headings';
+import Table from 'react-bootstrap/Table';
+import Entry from './trips-table-entry';
+import Head from './trips-table-head';
 
 /*the simplest way to define a component is to write a JavaScript function*/
-/*accept a single property object argument*/
-function TripsTable (props) {
-    /*create headings*/
-    const columns = React.useMemo(() => headings, []);
-
-    /*create data*/
-    /*updating hooks is done by the dependency array*/
-    /*define variables that 'trigger' the change on hooks*/
-    const data = React.useMemo(() => props.entries, [props.entries]);
-
+/*destructure props object*/
+function TripsTable ({ aryData }) {
+    const [searchField, setSearchField] = useState('');
+    const handleAryData = () => {
+        if (aryData.length > 0) {
+            //iterate over array
+            return aryData.map((item, index) => {
+                //console.log('aryData index: ' + index);
+                return (
+                    <Entry
+                        routeId={item.route_id}
+                        serviceId={item.service_id}
+                        tripId={item.trip_id}
+			tripHeadsign={item.trip_headsign}
+			tripShortName={item.trip_short_name}
+			directionId={item.direction_id}
+			blockId={item.block_id}
+			shapeId={item.shape_id}
+			wheelchairAccessibel={item.wheechair_accessible}
+			bikesAllowed={item.bikes_allowed}
+                        key={index}
+                    />
+                );
+            });
+        }
+    };
+    /*return a React element*/
     return (
-        <>{props.entries && <TableFilterColumn columns={columns} data={data} />}</>
+        <>
+            <Table striped bordered hover size="sm" variant="dark" responsive>
+                <thead>
+                    <Head />
+                </thead>
+                <tbody>{handleAryData()}</tbody>
+            </Table>
+        </>
     );
 }
-
 TripsTable.propTypes = {
-    entries: PropTypes.array
+    aryData: PropTypes.array
 };
-
 export default TripsTable;

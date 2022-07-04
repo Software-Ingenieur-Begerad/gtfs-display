@@ -16,13 +16,13 @@ const Routes = () => {
     const filteredAry = ary.filter((item, index) => {
         return (
             item.route_id.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.agency_id.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.route_short_name.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.route_long_name.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.route_type.toString().includes(searchField.toLowerCase()) ||
-            item.route_color.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.route_text_color.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.route_desc.toLowerCase().includes(searchField.toLowerCase())
+		(item.agency_id!==null && item.agency_id.toLowerCase().includes(searchField.toLowerCase())) ||
+		(item.route_short_name!==null && item.route_short_name.toLowerCase().includes(searchField.toLowerCase())) ||
+		(item.route_long_name!==null && item.route_long_name.toLowerCase().includes(searchField.toLowerCase())) ||
+		item.route_type.toString().includes(searchField.toLowerCase()) ||
+		(item.route_color!==null && item.route_color.toLowerCase().includes(searchField.toLowerCase())) ||
+		(item.route_text_color!==null && item.route_text_color.toLowerCase().includes(searchField.toLowerCase())) ||
+		(item.route_desc!==null &&item.route_desc.toLowerCase().includes(searchField.toLowerCase()))
         );
     });
     /*fetch ary in a JavaScript function*/

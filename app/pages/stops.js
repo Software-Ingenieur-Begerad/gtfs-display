@@ -16,16 +16,16 @@ const Stops = () => {
     const filteredAry = ary.filter((item, index) => {
         return (
             item.stop_id.toLowerCase().includes(searchField.toLowerCase()) ||
-		item.stop_code.toLowerCase().includes(searchField.toLowerCase()) ||
-		item.stop_name.toLowerCase().includes(searchField.toLowerCase()) ||
-		item.stop_descr.toLowerCase().includes(searchField.toLowerCase()) ||
-		item.stop_lat.toString().includes(searchField) ||
-		item.stop_lon.toString().includes(searchField) ||
-		item.stop_location_type.toString().includes(searchField) ||
-		item.stop_parent_station.toString().includes(searchField) ||
-		item.stop_wheelchair_boarding.toString().includes(searchField) ||
-		item.platform_code.toLowerCase().includes(searchField.toLowerCase()) ||
-		item.zone_id.toLowerCase().includes(searchField.toLowerCase())
+		(item.stop_code!==null && item.stop_code.toLowerCase().includes(searchField.toLowerCase())) ||
+		(item.stop_name!==null && item.stop_name.toLowerCase().includes(searchField.toLowerCase())) ||
+		(item.stop_desc!==null && item.stop_descr.toLowerCase().includes(searchField.toLowerCase())) ||
+		(item.stop_lat!==null && item.stop_lat.toString().includes(searchField)) ||
+		(item.stop_lon!==null && item.stop_lon.toString().includes(searchField)) ||
+		(item.stop_location_type!==null && item.stop_location_type.toString().includes(searchField)) ||
+		(item.stop_parent_station!==null && item.stop_parent_station.toString().includes(searchField)) ||
+		(item.wheelchair_boarding!==null && item.wheelchair_boarding.toString().includes(searchField)) ||
+		(item.platform_code!==null && item.platform_code.toLowerCase().includes(searchField.toLowerCase())) ||
+		(item.zone_id!==null && item.zone_id.toLowerCase().includes(searchField.toLowerCase()))
         );
     });
     /*fetch ary in a JavaScript function*/

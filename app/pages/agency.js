@@ -15,12 +15,12 @@ const Agency = () => {
     const [searchField, setSearchField] = useState('');
     const filteredAry = ary.filter((item, index) => {
         return (
-            item.agency_id.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.agency_name.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.agency_url.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.agency_timezone.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.agency_lang.toLowerCase().includes(searchField.toLowerCase()) ||
-            item.agency_phone.toLowerCase().includes(searchField.toLowerCase())
+            (item.agency_id!==null && item.agency_id.toLowerCase().includes(searchField.toLowerCase())) ||
+		item.agency_name.toLowerCase().includes(searchField.toLowerCase()) ||
+		item.agency_url.toLowerCase().includes(searchField.toLowerCase()) ||
+		item.agency_timezone.toLowerCase().includes(searchField.toLowerCase()) ||
+		(item.agency_lang!==null && item.agency_lang.toLowerCase().includes(searchField.toLowerCase())) ||
+		(item.agency_phone!==null && item.agency_phone.toLowerCase().includes(searchField.toLowerCase()))
         );
     });
     /*fetch ary in a JavaScript function*/
