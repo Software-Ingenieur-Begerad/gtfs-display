@@ -11,7 +11,7 @@ const StopsTableHead = () => {
             <td>stop_lon</td>
             <td>location_type</td>
             <td>parent_station</td>
-            <td>whelchair_boarding</td>
+            <td>wheelchair_boarding</td>
             <td>platform_code</td>
             <td>zone_id</td>
         </tr>
