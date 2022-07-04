@@ -1,4 +1,6 @@
 import React from 'react';
+import packageInfo from '../../package.json'
+const VERSION = packageInfo.version;
 const Contact = () => {
     return (
         <>
@@ -29,6 +31,10 @@ const Contact = () => {
         Deutschland
                 <br />
             </address>
+            <h2>Other</h2>
+	    <p>
+		Version: {VERSION}
+	    </p>
         </>
     );
 };
