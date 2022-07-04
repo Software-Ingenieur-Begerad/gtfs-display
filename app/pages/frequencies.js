@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import FrequenciesTable from '../components/frequencies-table';
-
+import config from '../config';
 const Frequencies = () => {
     /*store msgs as array in function component state*/
     /*initialise as empty array*/
@@ -10,11 +10,8 @@ const Frequencies = () => {
     /*fetch msgs in a JavaScript function*/
     const getMsgs = async () => {
         try {
-            /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const msgs = await axios.get(
-                'https://v1gtfs.vbn.api.swingbe.de/frequencies-all'
-            );
+            const msgs = await axios.get(`${config.api}frequencies-all`);
 
             /*set state*/
             setMsgs(msgs.data);

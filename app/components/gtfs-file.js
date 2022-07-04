@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
+import config from '../config';
 //destructure props
 const GtfsFile = ({ name }) => {
     /*store count as array in function component state*/
@@ -12,9 +13,8 @@ const GtfsFile = ({ name }) => {
     /*fetch count in a JavaScript function*/
     const getCount = async () => {
         try {
-            /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const address = `https://v1gtfs.vbn.api.swingbe.de/table-${name}-count`;
+            const address = `${config.api}table-${name}-count`;
             const count = await axios.get(address);
 
             /*set state*/

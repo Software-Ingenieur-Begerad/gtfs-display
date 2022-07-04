@@ -6,6 +6,7 @@ import ShapesTable from '../components/shapes-table';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import InputSearch from '../components/input-search';
+import config from '../config';
 const Shapes = () => {
     /*store and initialise data in function component state*/
     const [oset, setOset] = useState(1);
@@ -23,9 +24,8 @@ const Shapes = () => {
     /*fetch ary in a JavaScript function*/
     const fetch = async () => {
         try {
-            /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const address = `https://v1gtfs.vbn.api.swingbe.de/shapes-oset-limit?oset=${oset}&limit=${limit}`;
+            const address = `${config.api}shapes-oset-limit?oset=${oset}&limit=${limit}`;
             const res = await axios.get(address);
 
             /*set state*/

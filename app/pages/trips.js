@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import TripTable from '../components/trips-table';
 import FormValue from '../components/form-value';
-
+import config from '../config';
 const Trips = () => {
     /*store route as string*/
     const [route, setRoute] = useState('');
@@ -14,11 +14,10 @@ const Trips = () => {
     /*fetch msgs in a JavaScript function*/
     const getMsgs = async () => {
         try {
-            /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
             //const msgs = await axios.get('https://soll.vbn.de/gtfs/trips?routeshortname=411'
             const msgs = await axios.get(
-                `https://v1gtfs.vbn.api.swingbe.de/trips?routeshortname=${route}`
+                `${config.api}trips?routeshortname=${route}`
             );
 
             /*set state*/

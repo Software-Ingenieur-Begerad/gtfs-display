@@ -3,17 +3,15 @@ import GtfsValidatorReport from '../components/gtfs-validator-report.js';
 import GtfsFiles from '../components/gtfs-files.js';
 import axios from 'axios';
 import Tables from '../components/tables.js';
+import config from '../config';
 const Homepage = () => {
     /*store and initialise data in function component state*/
     const [tables, setTables] = useState([]);
     /*fetch data in a JavaScript function*/
     const getTables = async () => {
         try {
-            /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const tables = await axios.get(
-                'https://v1gtfs.vbn.api.swingbe.de/table-names'
-            );
+            const tables = await axios.get(`${config.api}table-names`);
 
             /*set state*/
             setTables(tables.data);

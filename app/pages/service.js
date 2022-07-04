@@ -3,11 +3,10 @@ import axios from 'axios';
 import ServiceTable from '../components/service-table';
 import FormValue from '../components/form-value';
 import Loading from '../components/loading';
-//TODO Whats the difference in importing with or without {}?
 import ChartBar from '../components/chart-bar';
 import ChartLine from '../components/chart-line';
 import GtfsService from '../utils/gtfs-service';
-
+import config from '../config';
 const Service = () => {
     /*store route as string*/
     const [route, setRoute] = useState('');
@@ -20,9 +19,8 @@ const Service = () => {
     /*fetch objService in a JavaScript function*/
     const getObjService = async () => {
         try {
-            /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            let url = `https://v1gtfs.vbn.api.swingbe.de/servicedays?routeshortname=${route}`;
+            let url = `${config.api}servicedays?routeshortname=${route}`;
             setLoading(true);
             const objService = await axios.get(url);
             setLoading(false);

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import OverviewTable from '../components/overview-table';
-//TODO Whats the difference in importing with or without {}?
-
+import config from '../config';
 const Overview = () => {
     /*store data in function component state*/
     /*initialise as empty array*/
@@ -27,7 +26,7 @@ const Overview = () => {
             //console.log('routeCount: ' + routeCount);
             if (routeCount === null) {
                 const resRouteCount = await axios.get(
-                    `https://v1gtfs.vbn.api.swingbe.de/route-count?agencyid=${agencyId}`
+                    `${config.api}route-count?agencyid=${agencyId}`
                 );
                 obj.route_count = resRouteCount.data;
                 routeCount = obj.route_count;
@@ -38,7 +37,7 @@ const Overview = () => {
             //console.log('tripCount: ' + tripCount);
             if (tripCount === null) {
                 const resTripCount = await axios.get(
-                    `https://v1gtfs.vbn.api.swingbe.de/trip-count?agencyid=${agencyId}`
+                    `${config.api}trip-count?agencyid=${agencyId}`
                 );
                 obj.trip_count = resTripCount.data;
                 tripCount = obj.trip_count;
@@ -60,9 +59,7 @@ const Overview = () => {
         try {
             /*get agencies*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const res = await axios.get(
-                'https://v1gtfs.vbn.api.swingbe.de/agency-all'
-            );
+            const res = await axios.get(`${config.api}agency-all`);
 
             let aryOv = res.data;
             for (var i = 0; i < aryOv.length; i++) {

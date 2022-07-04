@@ -6,6 +6,7 @@ import TablePageSwitch from '../components/table-switch';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
+import config from '../config';
 const TablePage = ({ name }) => {
     /*store and initialise data in function component state*/
     const [oset, setOset] = useState(1);
@@ -15,11 +16,10 @@ const TablePage = ({ name }) => {
     /*fetch ary in a JavaScript function*/
     const fetch = async () => {
         try {
-            /*TODO make route available using config*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
             //fetch data only if user selection is available
             if (name.indexOf(' ') === -1) {
-                const address = `https://v1gtfs.vbn.api.swingbe.de/${name}-oset-limit?oset=${oset}&limit=${limit}`;
+                const address = `${config.api}${name}-oset-limit?oset=${oset}&limit=${limit}`;
                 const res = await axios.get(address);
                 /*set state*/
                 setAry((ary) => res.data);

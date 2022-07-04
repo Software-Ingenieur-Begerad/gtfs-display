@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
+import config from '../config';
 const GtfsValidatorReport = () => {
     const [show, setShow] = useState(true);
     if (show) {
@@ -7,7 +8,7 @@ const GtfsValidatorReport = () => {
             <>
                 <Alert variant={'secondary'} onClose={() => setShow(false)} dismissible>
           A daily{' '}
-                    <Alert.Link href="https://www.v1gtfs.vbn.api.swingbe.de/gtfs-validator/report.html">
+                    <Alert.Link href={`${config.api}gtfs-validator/report.html`}>
             report
                     </Alert.Link>{' '}
           about compliance of this GTFS feed with these{' '}
