@@ -72,7 +72,7 @@ const TablePage = ({ name }) => {
             </>
         );
     } else {
-        return <p>Please select file.</p>;
+        return null;
     }
 };
 

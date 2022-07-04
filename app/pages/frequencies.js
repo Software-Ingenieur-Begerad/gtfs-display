@@ -1,39 +1,89 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Select from '../components/select';
+import {selectOptions} from '../utils/select-options';
 import FrequenciesTable from '../components/frequencies-table';
+import Stack from 'react-bootstrap/Stack';
+import Button from 'react-bootstrap/Button';
+import Input from '../components/input';
 import config from '../config';
 const Frequencies = () => {
-    /*store msgs as array in function component state*/
-    /*initialise as empty array*/
-    const [msgs, setMsgs] = useState([]);
-
-    /*fetch msgs in a JavaScript function*/
-    const getMsgs = async () => {
+    /*store and initialise data in function component state*/
+    const [oset, setOset] = useState(1);
+    const [limit, setLimit] = useState(selectOptions[2]);
+    const [ary, setAry] = useState([]);
+    const [searchField, setSearchField] = useState('');
+    const filteredAry = ary.filter((item, index) => {
+        return (
+	    item.trip_id.toLowerCase().includes(searchField.toLowerCase()) ||
+		item.start_time.toLowerCase().includes(searchField.toLowerCase()) ||
+		item.end_time.toLowerCase().includes(searchField.toLowerCase()) ||
+		item.headway_secs.toString().includes(searchField) ||
+		(item.exact_times!==null && item.exact_times.toString().includes(searchField))
+        );
+    });
+    /*fetch ary in a JavaScript function*/
+    const fetch = async () => {
         try {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const msgs = await axios.get(`${config.api}frequencies-all`);
+            const address = `${config.api}frequencies-oset-limit?oset=${oset}&limit=${limit}`;
+            const res = await axios.get(address);
 
             /*set state*/
-            setMsgs(msgs.data);
+            setAry(res.data);
         } catch (err) {
             console.log('err.message: ' + err.message);
         }
     };
 
     /*this hook is run after a DOM update. Changing state migh result in an infinite loop*/
-    useEffect(() => {
-    /*effect goes here*/
-
         /*hook need to be placed in body of the function component in which it is used*/
-        getMsgs();
-
-    /*use an empty dependency array to ensure the hook is running only once*/
-    /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
-    }, []);
-
-    /*element representing user-defined React component*/
-    const msgTable = <FrequenciesTable entries={msgs} />;
-
-    return <>{msgTable}</>;
+    useEffect(() => {
+	/*effect goes here*/
+        fetch();
+	/*use an empty dependency array to ensure the hook is running only once*/
+	/*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
+    }, [oset, limit]);
+    const handleClickPrev = () => {
+        setOset((oset) => (oset > 1 ? --oset : oset));
+    };
+    const handleClickNext = () => {
+        setOset((oset) => ++oset);
+    };
+    const handleChangeLimit = (event) => {
+        setLimit((limit) => event.target.value);
+    };
+    const handleSearch = (e) => {
+        setSearchField(e.target.value);
+    };
+    return (
+        <>
+            <Stack direction="horizontal" gap={1} className="m-1">
+                <Button variant="secondary" onClick={handleClickPrev} autoFocus>
+          prev
+                </Button>
+                <Button variant="secondary" onClick={handleClickNext}>
+          next
+                </Button>
+		<Select
+		    defaultValue={selectOptions[2]}
+		    id="frequenciesLimit"
+		    name="frequenciesLimit"
+		    onChange={handleChangeLimit}
+		    options={selectOptions}
+		/>
+		<Input
+		    id="frequenciesSearch"
+		    name="frequenciesSearch"
+                    onChange={handleSearch}
+                    placeholder="Search table globally"
+                    type="search"
+                    title="Enter search value"
+		    value={searchField}
+		/>
+            </Stack>
+	    <FrequenciesTable aryData={filteredAry} />
+        </>
+    );
 };
 export default Frequencies;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
-const FileSelect = ({ options, name, onChange, defaultValue }) => {
+const FileSelect = ({ options, name, onChange, defaultValue, title }) => {
     if (options.length > 0) {
         return (
             <div>
@@ -11,6 +11,7 @@ const FileSelect = ({ options, name, onChange, defaultValue }) => {
                     id={name}
                     className={name}
                     onChange={onChange}
+		    title={title}
                 >
                     <option defaultValue>{defaultValue}</option>
                     {options.map((item, index) => (
@@ -36,5 +37,6 @@ FileSelect.propTypes = {
     name: PropTypes.string,
     defaultValue: PropTypes.string,
     onChange: PropTypes.func,
+    title: PropTypes.string,
     options: PropTypes.array
 };

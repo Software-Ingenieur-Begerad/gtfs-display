@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 /*controlled component: input form value controlled by React*/
-const InputSearch = ({id, name, onChange, placeholder, title, value}) => {
+const InputSearch = ({id, name, onChange, placeholder, title, type, value}) => {
     return (
         <>
             <Form.Control
@@ -13,7 +13,7 @@ const InputSearch = ({id, name, onChange, placeholder, title, value}) => {
 		onChange={onChange}
                 placeholder={placeholder}
                 title={title}
-		type="search"
+		type={type}
 		value={value}
 	    />
         </>
@@ -27,5 +27,6 @@ InputSearch.propTypes = {
     name: PropTypes.string,
     placeholder: PropTypes.string,
     title: PropTypes.string,
+    type: PropTypes.string,
     onChange: PropTypes.func
 };

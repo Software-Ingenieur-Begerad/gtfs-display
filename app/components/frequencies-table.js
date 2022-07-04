@@ -1,26 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import TableFilterColumn from './table-filter-column';
-import headings from './frequencies-table-headings';
+import Table from 'react-bootstrap/Table';
+import Entry from './frequencies-table-entry';
+import Head from './frequencies-table-head';
 
 /*the simplest way to define a component is to write a JavaScript function*/
-/*accept a single property object argument*/
-function FrequenciesTable (props) {
-    /*create headings*/
-    const columns = React.useMemo(() => headings, []);
-
-    /*create data*/
-    /*updating hooks is done by the dependency array*/
-    /*define variables that 'trigger' the change on hooks*/
-    const data = React.useMemo(() => props.entries, [props.entries]);
-
+/*destructure props object*/
+function FrequenciesTable ({ aryData }) {
+    const [searchField, setSearchField] = useState('');
+    const handleAryData = () => {
+        if (aryData.length > 0) {
+            //iterate over array
+            return aryData.map((item, index) => {
+                //console.log('aryData index: ' + index);
+                return (
+                    <Entry
+			tripId={item.trip_id}
+			startTime={item.start_time}
+			endTime={item.end_time}
+			headwaySecs={item.headway_secs}
+			exactTimes={item.exact_times}
+                        key={index}
+                    />
+                );
+            });
+        }
+    };
+    /*return a React element*/
     return (
-        <>{props.entries && <TableFilterColumn columns={columns} data={data} />}</>
+        <>
+            <Table striped bordered hover size="sm" variant="dark" responsive>
+                <thead>
+                    <Head />
+                </thead>
+                <tbody>{handleAryData()}</tbody>
+            </Table>
+        </>
     );
 }
-
 FrequenciesTable.propTypes = {
-    entries: PropTypes.array
+    aryData: PropTypes.array
 };
-
 export default FrequenciesTable;

@@ -5,7 +5,7 @@ import {selectOptions} from '../utils/select-options';
 import TripsTable from '../components/trips-table';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import InputSearch from '../components/input-search';
+import Input from '../components/input';
 import config from '../config';
 const Trips = () => {
     /*store and initialise data in function component state*/
@@ -77,7 +77,7 @@ const Trips = () => {
 		    onChange={handleChangeLimit}
 		    options={selectOptions}
 		/>
-		<InputSearch
+		<Input
 		    id="tripsSearch"
 		    name="tripsSearch"
                     onChange={handleSearch}

@@ -5,7 +5,7 @@ import {selectOptions} from '../utils/select-options';
 import AgencyTable from '../components/agency-table';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import InputSearch from '../components/input-search';
+import Input from '../components/input';
 import config from '../config';
 const Agency = () => {
     /*store and initialise data in function component state*/
@@ -68,18 +68,18 @@ const Agency = () => {
                 </Button>
 		<Select
 		    defaultValue={selectOptions[2]}
-		    id="shapesLimit"
-		    name="shapesLimit"
+		    id="agencyLimit"
+		    name="agencyLimit"
 		    onChange={handleChangeLimit}
 		    options={selectOptions}
 		/>
-		<InputSearch
-		    id="shapesSearch"
-		    name="shapesSearch"
+		<Input
+		    id="agencySearch"
+		    name="agencySearch"
                     onChange={handleSearch}
                     placeholder="Search table globally"
-                    type="search"
                     title="Enter search value"
+                    type="search"
 		    value={searchField}
 		/>
             </Stack>

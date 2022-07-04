@@ -5,7 +5,7 @@ import {selectOptions} from '../utils/select-options';
 import RoutesTable from '../components/routes-table';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import InputSearch from '../components/input-search';
+import Input from '../components/input';
 import config from '../config';
 const Routes = () => {
     /*store and initialise data in function component state*/
@@ -75,7 +75,7 @@ const Routes = () => {
 		    onChange={handleChangeLimit}
 		    options={selectOptions}
 		/>
-		<InputSearch
+		<Input
 		    id="shapesSearch"
 		    name="shapesSearch"
                     onChange={handleSearch}

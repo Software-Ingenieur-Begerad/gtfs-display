@@ -5,7 +5,7 @@ import {selectOptions} from '../utils/select-options';
 import StopsTable from '../components/stops-table';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import InputSearch from '../components/input-search';
+import Input from '../components/input';
 import config from '../config';
 const Stops = () => {
     /*store and initialise data in function component state*/
@@ -21,8 +21,8 @@ const Stops = () => {
 		(item.stop_desc!==null && item.stop_descr.toLowerCase().includes(searchField.toLowerCase())) ||
 		(item.stop_lat!==null && item.stop_lat.toString().includes(searchField)) ||
 		(item.stop_lon!==null && item.stop_lon.toString().includes(searchField)) ||
-		(item.stop_location_type!==null && item.stop_location_type.toString().includes(searchField)) ||
-		(item.stop_parent_station!==null && item.stop_parent_station.toString().includes(searchField)) ||
+		(item.location_type!==null && item.location_type.toString().includes(searchField)) ||
+		(item.parent_station!==null && item.parent_station.toString().includes(searchField)) ||
 		(item.wheelchair_boarding!==null && item.wheelchair_boarding.toString().includes(searchField)) ||
 		(item.platform_code!==null && item.platform_code.toLowerCase().includes(searchField.toLowerCase())) ||
 		(item.zone_id!==null && item.zone_id.toLowerCase().includes(searchField.toLowerCase()))
@@ -78,7 +78,7 @@ const Stops = () => {
 		    onChange={handleChangeLimit}
 		    options={selectOptions}
 		/>
-		<InputSearch
+		<Input
 		    id="stopsSearch"
 		    name="stopsSearch"
                     onChange={handleSearch}

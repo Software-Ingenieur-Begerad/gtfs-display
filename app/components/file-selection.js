@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FileSelect from '../components/file-select';
 import TablePage from '../components/table-page.js';
 const FileSelection = ({ options }) => {
-    const defaultGtfsFile = 'Select file';
+    const defaultGtfsFile = 'Select GTFS file';
     const [gtfsFile, setGtfsFile] = useState(defaultGtfsFile);
     const handleChangeGtfsFile = (event) => {
         setGtfsFile((gtfsFile) => event.target.value);
@@ -16,6 +16,7 @@ const FileSelection = ({ options }) => {
                     onChange={handleChangeGtfsFile}
                     options={options}
                     defaultValue={defaultGtfsFile}
+		    title={defaultGtfsFile}
                 />
                 <TablePage name={gtfsFile} />
             </div>
