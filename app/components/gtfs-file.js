@@ -14,7 +14,7 @@ const GtfsFile = ({ name }) => {
     const getCount = async () => {
         try {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const address = `${config.api}table-${name}-count`;
+            const address = `${config.API}table-${name}-count`;
             const count = await axios.get(address);
 
             /*set state*/

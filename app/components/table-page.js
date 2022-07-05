@@ -19,7 +19,7 @@ const TablePage = ({ name }) => {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
             //fetch data only if user selection is available
             if (name.indexOf(' ') === -1) {
-                const address = `${config.api}${name}-oset-limit?oset=${oset}&limit=${limit}`;
+                const address = `${config.API}${name}-oset-limit?oset=${oset}&limit=${limit}`;
                 const res = await axios.get(address);
                 /*set state*/
                 setAry((ary) => res.data);

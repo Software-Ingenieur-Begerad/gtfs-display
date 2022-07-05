@@ -26,7 +26,7 @@ const Frequencies = () => {
     const fetch = async () => {
         try {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const address = `${config.api}frequencies-oset-limit?oset=${oset}&limit=${limit}`;
+            const address = `${config.API}frequencies-oset-limit?oset=${oset}&limit=${limit}`;
             const res = await axios.get(address);
 
             /*set state*/

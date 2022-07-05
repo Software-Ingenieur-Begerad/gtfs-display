@@ -29,7 +29,7 @@ const Routes = () => {
     const fetch = async () => {
         try {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const address = `${config.api}routes-oset-limit?oset=${oset}&limit=${limit}`;
+            const address = `${config.API}routes-oset-limit?oset=${oset}&limit=${limit}`;
             const res = await axios.get(address);
 
             /*set state*/

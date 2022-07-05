@@ -25,7 +25,7 @@ const Shapes = () => {
     const fetch = async () => {
         try {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const address = `${config.api}shapes-oset-limit?oset=${oset}&limit=${limit}`;
+            const address = `${config.API}shapes-oset-limit?oset=${oset}&limit=${limit}`;
             const res = await axios.get(address);
 
             /*set state*/

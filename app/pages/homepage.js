@@ -11,7 +11,7 @@ const Homepage = () => {
     const getTables = async () => {
         try {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const tables = await axios.get(`${config.api}table-names`);
+            const tables = await axios.get(`${config.API}table-names`);
 
             /*set state*/
             setTables(tables.data);

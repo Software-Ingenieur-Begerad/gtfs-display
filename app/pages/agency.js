@@ -27,7 +27,7 @@ const Agency = () => {
     const fetch = async () => {
         try {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const address = `${config.api}agency-oset-limit?oset=${oset}&limit=${limit}`;
+            const address = `${config.API}agency-oset-limit?oset=${oset}&limit=${limit}`;
             const res = await axios.get(address);
 
             /*set state*/

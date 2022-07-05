@@ -8,7 +8,7 @@ const GtfsValidatorReport = () => {
             <>
                 <Alert variant={'secondary'} onClose={() => setShow(false)} dismissible>
           A daily{' '}
-                    <Alert.Link href={`${config.api}gtfs-validator/report.html`}>
+                    <Alert.Link href={config.GTFS_VALIDATOR_REPORT}>
             report
                     </Alert.Link>{' '}
           about compliance of this GTFS feed with these{' '}

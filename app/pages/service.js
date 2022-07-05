@@ -20,7 +20,7 @@ const Service = () => {
     const getObjService = async () => {
         try {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            let url = `${config.api}servicedays?routeshortname=${route}`;
+            let url = `${config.API}servicedays?routeshortname=${route}`;
             setLoading(true);
             const objService = await axios.get(url);
             setLoading(false);

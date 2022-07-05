@@ -26,7 +26,7 @@ const Overview = () => {
             //console.log('routeCount: ' + routeCount);
             if (routeCount === null) {
                 const resRouteCount = await axios.get(
-                    `${config.api}route-count?agencyid=${agencyId}`
+                    `${config.API}route-count?agencyid=${agencyId}`
                 );
                 obj.route_count = resRouteCount.data;
                 routeCount = obj.route_count;
@@ -37,7 +37,7 @@ const Overview = () => {
             //console.log('tripCount: ' + tripCount);
             if (tripCount === null) {
                 const resTripCount = await axios.get(
-                    `${config.api}trip-count?agencyid=${agencyId}`
+                    `${config.API}trip-count?agencyid=${agencyId}`
                 );
                 obj.trip_count = resTripCount.data;
                 tripCount = obj.trip_count;
@@ -59,7 +59,7 @@ const Overview = () => {
         try {
             /*get agencies*/
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            const res = await axios.get(`${config.api}agency-all`);
+            const res = await axios.get(`${config.API}agency-all`);
 
             let aryOv = res.data;
             for (var i = 0; i < aryOv.length; i++) {
