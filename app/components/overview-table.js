@@ -22,7 +22,7 @@ function OverviewTable ({ overview }) {
                 );
             });
         } else {
-            console.log('overview NOT available');
+            console.error('overview NOT available');
             return null;
         }
     };

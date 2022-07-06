@@ -20,7 +20,7 @@ const GtfsFile = ({ name }) => {
             /*set state*/
             setCount(count.data[0]['count']);
         } catch (err) {
-            console.log('err.message: ' + err.message);
+            console.error('err.message: ' + err.message);
         }
     };
 

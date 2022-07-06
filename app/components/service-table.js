@@ -5,13 +5,12 @@ import Entry from './service-table-entry';
 import Head from './service-table-head';
 
 /*the simplest way to define a component is to write a JavaScript function*/
-/*accept a single property object argument*/
-function ServiceTable (props) {
+function ServiceTable ({service,render}) {
     /*map over msgs array and return Standortmeldungen*/
     const getService = () => {
     //iterate over object
-        if (props.service) {
-            return Object.entries(props.service).map((trips, key) => {
+        if (service) {
+            return Object.entries(service).map((trips, key) => {
                 /*the strict equals operator does not converts operants of differnet type*/
                 //console.log('key: ' + key);
                 let objTrips = trips[1];
@@ -24,11 +23,12 @@ function ServiceTable (props) {
                 return <Entry date={date.toDateString()} count={count} key={key} />;
             });
         } else {
-            console.log('service NOT available');
+            console.error('service NOT available');
+	    return null;
         }
     };
 
-    if (props.render) {
+    if (render) {
     /*return a React element*/
         return (
             <>

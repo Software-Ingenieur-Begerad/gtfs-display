@@ -29,12 +29,20 @@ const Homepage = () => {
     /*use an empty dependency array to ensure the hook is running only once*/
     /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
     }, []);
-    return (
-        <>
-            <GtfsValidatorReport />
-            <GtfsFiles />
-            <Tables data={tables} />
-        </>
-    );
+    if(tables.length>0){
+	return (
+	    <>
+		<GtfsValidatorReport />
+		<GtfsFiles data={tables}/>
+		<Tables data={tables} />
+	    </>
+	);
+    }else{
+	return (
+	    <>
+		<GtfsValidatorReport />
+	    </>
+	);
+    }
 };
 export default Homepage;

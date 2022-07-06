@@ -1,46 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Select from '../components/select';
-const selectOptions = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000];
+import {selectOptions} from '../utils/select-options';
 import TablePageSwitch from '../components/table-switch';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
+import Input from '../components/input';
 import PropTypes from 'prop-types';
 import config from '../config';
+import {filterData} from '../utils/filter-data';
 const TablePage = ({ name }) => {
     /*store and initialise data in function component state*/
     const [oset, setOset] = useState(1);
-    const [limit, setLimit] = useState(selectOptions[0]);
-    const [ary, setAry] = useState([]);
-
-    /*fetch ary in a JavaScript function*/
-    const fetch = async () => {
-        try {
-            /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
-            //fetch data only if user selection is available
-            if (name.indexOf(' ') === -1) {
-                const address = `${config.API}${name}-oset-limit?oset=${oset}&limit=${limit}`;
-                const res = await axios.get(address);
-                /*set state*/
-                setAry((ary) => res.data);
-            }
-        } catch (err) {
-            console.error('err.message: ' + err.message);
-            //TODO handle error
-            setAry((ary) => []);
-        }
-    };
-
-    /*this hook is run after a DOM update. Changing state migh result in an infinite loop*/
-    useEffect(() => {
-    /*effect goes here*/
-
-        /*hook need to be placed in body of the function component in which it is used*/
-        fetch();
-
-    /*use an empty dependency array to ensure the hook is running only once*/
-    /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
-    }, [oset, limit, name]);
+    const [limit, setLimit] = useState(parseInt(selectOptions[0],10));
+    const [searchField, setSearchField] = useState('');
     const handleClickPrev = () => {
         setOset((oset) => (oset > 1 ? --oset : oset));
     };
@@ -48,9 +20,12 @@ const TablePage = ({ name }) => {
         setOset((oset) => ++oset);
     };
     const handleChangeLimit = (event) => {
-        setLimit((limit) => event.target.value);
+        setLimit((limit) => parseInt(event.target.value,10));
     };
-    if (ary.length > 0 && name.indexOf(' ') === -1) {
+    const handleSearch = (e) => {
+        setSearchField((searchField)=>e.target.value);
+    };
+    if (name!==null && name.indexOf(' ') === -1) {
         return (
             <>
                 <Stack direction="horizontal" gap={1} className="m-1">
@@ -62,22 +37,35 @@ const TablePage = ({ name }) => {
                     </Button>
 		    <Select
 			defaultValue={selectOptions[0]}
-			id="tabePageLimit"
+			id="tablePageLimit"
 			name="tablePageLimit"
 			onChange={handleChangeLimit}
 			options={selectOptions}
 		    />
+		    <Input
+			id="tablePageSearch"
+			name="tablePageSearch"
+			onChange={handleSearch}
+			placeholder="Search table globally"
+			type="search"
+			title="Enter search value"
+			value={searchField}
+		    />
                 </Stack>
-                <TablePageSwitch aryData={ary} name={name} />
+                <TablePageSwitch
+		    name={name}
+		    isFetched={false}
+		    oset={oset}
+		    limit={limit}
+		    filter={searchField}
+		/>
             </>
         );
     } else {
         return null;
     }
 };
-
 TablePage.propTypes = {
     name: PropTypes.string
 };
-
 export default TablePage;
