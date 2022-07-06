@@ -34,7 +34,7 @@ const Service = () => {
             const aryDate = aryTime.map((time) => new Date(time).toDateString());
             setTime(aryDate);
         } catch (err) {
-            console.log('err.message: ' + err.message);
+            console.error('err.message: ' + err.message);
         }
     };
 

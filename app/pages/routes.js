@@ -35,7 +35,7 @@ const Routes = () => {
             /*set state*/
             setAry(res.data);
         } catch (err) {
-            console.log('err.message: ' + err.message);
+            console.error('err.message: ' + err.message);
         }
     };
 

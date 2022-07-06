@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FileSelection from '../components/file-selection';
+import FileSelection from './file-selection';
 const Tables = ({ data }) => {
+    //console.log('Tables data.length: '+data.length);
     if (data.length > 0) {
         return (
             <>
@@ -9,10 +10,10 @@ const Tables = ({ data }) => {
             </>
         );
     } else {
-        return <p>Files loading...</p>;
+        return <p>Selection loading...</p>;
     }
 };
-export default Tables;
 Tables.propTypes = {
     data: PropTypes.array
 };
+export default Tables;
