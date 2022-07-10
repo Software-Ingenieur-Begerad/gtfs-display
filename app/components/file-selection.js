@@ -3,22 +3,22 @@ import PropTypes from 'prop-types';
 import FileSelect from '../components/file-select';
 import TablePage from '../components/table-page.js';
 const FileSelection = ({ options }) => {
-    const defaultGtfsFile = 'Select GTFS file';
-    const [gtfsFile, setGtfsFile] = useState(defaultGtfsFile);
-    const handleChangeGtfsFile = (event) => {
-        setGtfsFile((gtfsFile) => event.target.value);
+    const defaultFile = 'Select file';
+    const [fileName, setFileName] = useState(defaultFile);
+    const handleChangeFile = (event) => {
+        setFileName((fileName) => event.target.value);
     };
     if (options.length > 0) {
         return (
             <div>
                 <FileSelect
                     name="file"
-                    onChange={handleChangeGtfsFile}
+                    onChange={handleChangeFile}
                     options={options}
-                    defaultValue={defaultGtfsFile}
-		    title={defaultGtfsFile}
+                    defaultValue={defaultFile}
+		    title={defaultFile}
                 />
-                <TablePage name={gtfsFile} />
+                <TablePage name={fileName} />
             </div>
         );
     } else {

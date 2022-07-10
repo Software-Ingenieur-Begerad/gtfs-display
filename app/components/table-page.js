@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Select from '../components/select';
+import Select from './select';
 import {selectOptions} from '../utils/select-options';
-import TablePageSwitch from '../components/table-switch';
+import TableSwitch from './table-switch';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import Input from '../components/input';
+import Input from './input';
 import PropTypes from 'prop-types';
-import config from '../config';
-import {filterData} from '../utils/filter-data';
 const TablePage = ({ name }) => {
     /*store and initialise data in function component state*/
     const [oset, setOset] = useState(1);
@@ -52,7 +50,7 @@ const TablePage = ({ name }) => {
 			value={searchField}
 		    />
                 </Stack>
-                <TablePageSwitch
+                <TableSwitch
 		    name={name}
 		    isFetched={false}
 		    oset={oset}
