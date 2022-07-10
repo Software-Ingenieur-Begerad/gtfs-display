@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TableHeadSwitch from './table-head-switch';
 import AgencyEntry from './agency-table-entry';
 import CalendarEntry from './calendar-table-entry';
 import CalendarDatesEntry from './calendar-dates-table-entry';
@@ -196,6 +195,7 @@ function TableEntrySwitch ({ aryData, name }) {
                 }
             });
         }else{
+            console.error('data is empty');
 	    return null;
 	}
 }
