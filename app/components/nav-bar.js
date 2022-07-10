@@ -10,13 +10,8 @@ function NavigationBar () {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <LinkContainer to="/agency">
-                        <Nav.Link>Agency</Nav.Link>
-                    </LinkContainer>
-                </Nav>
-                <Nav className="mr-auto">
-                    <LinkContainer to="/frequencies">
-                        <Nav.Link>Frequencies</Nav.Link>
+                    <LinkContainer to="/files">
+                        <Nav.Link>Files</Nav.Link>
                     </LinkContainer>
                 </Nav>
                 <Nav className="mr-auto">
@@ -25,28 +20,8 @@ function NavigationBar () {
                     </LinkContainer>
                 </Nav>
                 <Nav className="mr-auto">
-                    <LinkContainer to="/routes">
-                        <Nav.Link>Routes</Nav.Link>
-                    </LinkContainer>
-                </Nav>
-                <Nav className="mr-auto">
                     <LinkContainer to="/service">
                         <Nav.Link>Service</Nav.Link>
-                    </LinkContainer>
-                </Nav>
-                <Nav className="mr-auto">
-                    <LinkContainer to="/shapes">
-                        <Nav.Link>Shapes</Nav.Link>
-                    </LinkContainer>
-                </Nav>
-                <Nav className="mr-auto">
-                    <LinkContainer to="/stops">
-                        <Nav.Link>Stops</Nav.Link>
-                    </LinkContainer>
-                </Nav>
-                <Nav className="mr-auto">
-                    <LinkContainer to="/trips">
-                        <Nav.Link>Trips</Nav.Link>
                     </LinkContainer>
                 </Nav>
                 <Nav className="mr-auto">
