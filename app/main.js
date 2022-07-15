@@ -9,6 +9,7 @@ import HomePage from './pages/homepage';
 import Files from './pages/files';
 import Overview from './pages/overview';
 import Service from './pages/service';
+import TripCalendar from './pages/trip-calendar';
 import Contact from './pages/contact';
 
 const Main = () => {
@@ -24,6 +25,7 @@ const Main = () => {
                 <Route path="/files" element={<Files />} />
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/service" element={<Service />} />
+                <Route path="/trip-calendar" element={<TripCalendar />} />
                 <Route path="/contact" element={<Contact />} />
             </Routes>
         </BrowserRouter>

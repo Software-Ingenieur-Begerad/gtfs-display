@@ -81,7 +81,7 @@ const Overview = () => {
             /*set... is an async function and you cannot get the state value immediately after update. Use useEffect hook instead*/
             setAgencies((agencies) => !agencies);
         } catch (err) {
-            ////console.log('err.message: ' + err.message);
+            console.error('err.message: ' + err.message);
         }
     };
 
