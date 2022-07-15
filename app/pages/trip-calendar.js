@@ -15,7 +15,7 @@ const TripCalendar = () => {
             const res = await axios.get(`${config.API}agencyids`);
 
             let aryAgencyIds = res.data;
-	    console.log('aryAgencyIds.length:'+aryAgencyIds.length);
+	    //console.log('aryAgencyIds.length:'+aryAgencyIds.length);
 	    setAgencyIds(aryAgencyIds);
         } catch (err) {
             console.error('err.message: ' + err.message);
@@ -33,7 +33,7 @@ const TripCalendar = () => {
     if(agencyIds.length > 0){
 	return <>
 	       {/*manual selection of table name*/}
-               <TablePage name="agency" />
+               <TablePage name="agency-id-name" />
 	   </>
     }else{
 	return <p>Trip Calendar loading...</p>

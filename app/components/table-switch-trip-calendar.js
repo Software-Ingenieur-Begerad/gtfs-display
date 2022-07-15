@@ -21,8 +21,8 @@ function TableSwitch ({name, isFetched, oset, limit, filter}) {
             /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
             //fetch data only if user selection is unequal default value
             if (name.length>0 && name.indexOf(' ') === -1) {
-                const address = `${config.API}${name}ids`;
-		console.log('address:'+address);
+                const address = `${config.API}${name}?oset=${oset}&limit=${limit}`;
+		//console.log('address:'+address);
                 const res = await axios.get(address);
 		setAry((ary) => res.data);
 		let data=filterData(res.data,name,filter);

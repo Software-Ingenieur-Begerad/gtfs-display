@@ -16,6 +16,14 @@ function filterData(data, name,filter){
             );
 	});
 	break;
+    case 'agency-id-name':
+	return data.filter((item, index) => {
+            return (
+		(item.agency_id!==null && item.agency_id.toLowerCase().includes(filter.toLowerCase())) ||
+		    item.agency_name.toLowerCase().includes(filter.toLowerCase())
+            );
+	});
+	break;
     case 'frequencies':
 	return data.filter((item, index) => {
 	    return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AgencyEntry from './agency-table-entry';
+import AgencyIdNameEntry from './agency-id-name-table-entry';
 import CalendarEntry from './calendar-table-entry';
 import CalendarDatesEntry from './calendar-dates-table-entry';
 import FrequenciesEntry from './frequencies-table-entry';
@@ -28,6 +29,15 @@ function TableEntrySwitch ({ aryData, name }) {
                                 agencyTimezone={item.agency_timezone}
                                 agencyLanguage={item.agency_language}
                                 agencyPhone={item.agency_phone}
+                                key={index}
+                            />
+                        );
+                        break;
+                    case 'agency-id-name':
+                        return (
+                            <AgencyIdNameEntry
+                                agencyId={item.agency_id}
+                                agencyName={item.agency_name}
                                 key={index}
                             />
                         );

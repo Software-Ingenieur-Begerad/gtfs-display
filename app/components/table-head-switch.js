@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AgencyHead from './agency-table-head';
+import AgencyIdNameHead from './agency-id-name-table-head';
 import CalendarHead from './calendar-table-head';
 import CalendarDatesHead from './calendar-dates-table-head';
 import FrequenciesHead from './frequencies-table-head';
@@ -18,6 +19,9 @@ function TableHeadSwitch ({ name }) {
         switch (name) {
             case 'agency':
                 return <AgencyHead />;
+                break;
+            case 'agency-id-name':
+                return <AgencyIdNameHead />;
                 break;
             case 'calendar':
                 return <CalendarHead />;
