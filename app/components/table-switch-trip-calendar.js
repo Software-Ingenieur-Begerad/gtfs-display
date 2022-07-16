@@ -10,9 +10,11 @@ function TableSwitch ({
     agencyId,
     agencyName
 }) {
-    console.log('TableSwitch agencyId: '+agencyId);
-    console.log('TableSwitch agencyName: '+agencyName);
-    if(tripCalendar!==undefined){
+    if(tripCalendar!==undefined &&
+       agencyId!==undefined &&
+       agencyName!==undefined){
+	console.log('TableSwitch agencyId: '+agencyId);
+	console.log('TableSwitch agencyName: '+agencyName);
 	console.log('TableSwitch tripCalendar.length: '+Object.keys(tripCalendar).length);
 	/*return a React element*/
 	return (

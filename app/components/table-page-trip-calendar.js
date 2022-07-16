@@ -3,10 +3,11 @@ import axios from 'axios';
 import TableSwitch from './table-switch-trip-calendar';
 import PropTypes from 'prop-types';
 const TablePage = ({ agencyIds }) => {
+    if(agencyIds.length > 0){
     console.log('TablePage agencyIds.length:'+agencyIds.length);
     const agencyId=agencyIds[0].agency_id;
     console.log('TablePage agencyId:'+agencyId);
-    const agencyName=agencyName[0].agency_name;
+    const agencyName=agencyIds[0].agency_name;
     console.log('TablePage agencyName:'+agencyName);
     /*store and initialise data in function component state*/
     const [tripCalendar0, setTripCalendar0] = useState({});
@@ -32,7 +33,6 @@ const TablePage = ({ agencyIds }) => {
     /*use an empty dependency array to ensure the hook is running only once*/
     /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
     }, []);
-    if (agencyIds.length>0){
         return (
             <>
                 <TableSwitch
@@ -42,8 +42,7 @@ const TablePage = ({ agencyIds }) => {
 		/>
             </>
         );
-    } else {
-	console.log('TablePage agencyIds empty');
+    }else{
 	return <p>Table Page loading...</p>
     }
 };

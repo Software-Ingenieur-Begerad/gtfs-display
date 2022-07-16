@@ -9,10 +9,13 @@ const AgencyTableEntry = ({
         <tr>
             <td>{agencyId}</td>
             <td>{agencyName}</td>
-	    {tripCalendar.map((value,index)=>{
-		console.log('AgencyTableEntry value:'+value[index]+',index:'+index);
-		<td>{value[index]}</td>
-	    })}
+	    {
+		Object.values(tripCalendar).map((value,index)=>{
+		    return (
+			<th key={index}>{value}</th>
+		    );
+		})
+	    }
         </tr>
     );
 };

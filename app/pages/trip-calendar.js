@@ -13,7 +13,7 @@ const TripCalendar = () => {
             const res = await axios.get(`${config.API}agencyids`);
 
             let aryAgencyIds = res.data;
-	    console.log('aryAgencyIds.length:'+aryAgencyIds.length);
+	    console.log('TripCalendar aryAgencyIds.length:'+aryAgencyIds.length);
 	    setAgencyIds(aryAgencyIds);
         } catch (err) {
             console.error('err.message: ' + err.message);
