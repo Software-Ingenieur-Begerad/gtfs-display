@@ -11,7 +11,7 @@ const AgencyTableHead = ({
 	//return date.toISOString().split('T')[0]
 	return date.toLocaleDateString();
     };
-    if(tripCalendar!==undefined){
+    if(tripCalendar!==undefined && Object.keys(tripCalendar).length>0){
 	//console.log('AgencyTableHead tripCalendar.length: '+Object.keys(tripCalendar).length);
 	return (
         <tr>
@@ -27,7 +27,7 @@ const AgencyTableHead = ({
         </tr>
 	);
     }else{
-	console.log('AgencyTableHead tripCalendar UNDEFINED');
+	//console.log('AgencyTableHead waiting for prop');
 	return (
         <tr>
             <th>Table Head loading...</th>

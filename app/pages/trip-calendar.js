@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TripCalendarTable from '../components/overview-table';
 import config from '../config';
-import TablePage from '../components/table-page-trip-calendar.js';
+import TablePageHead from '../components/table-page-trip-calendar-head.js';
+import TablePageBody from '../components/table-page-trip-calendar-body.js';
+import Table from 'react-bootstrap/Table';
 const TripCalendar = () => {
     /*store and initialize data in function component state*/
     const [agencyIds, setAgencyIds] = useState([]);
@@ -13,7 +15,7 @@ const TripCalendar = () => {
             const res = await axios.get(`${config.API}agencyids`);
 
             let aryAgencyIds = res.data;
-	    console.log('TripCalendar aryAgencyIds.length:'+aryAgencyIds.length);
+	    //console.log('TripCalendar aryAgencyIds.length:'+aryAgencyIds.length);
 	    setAgencyIds(aryAgencyIds);
         } catch (err) {
             console.error('err.message: ' + err.message);
@@ -26,21 +28,30 @@ const TripCalendar = () => {
     /*use an empty dependency array to ensure the hook is running only once*/
     /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
     }, []);
-    /*const agencys = agencyIds.map(value =>
-	<div key={value.agency_id} className={value.agency_name}>
-	    id: {value.agency_id}, name: {value.agency_name}
-	</div>
-    );*/
-    const agencysTable = agencyIds.map(value =>
-			   <TablePage
+    const agencysTableBody = agencyIds.map(value =>
+			   <TablePageBody
 			       className={value.agency_name}
 			       agencyIdName={value}
 			       key={value.agency_id}
 			   />
     );
+    const agencysTableHead = <TablePageHead
+			       className='tablePageHead'
+			       agencyIdName={agencyIds[0]}
+			   />
     if(agencyIds.length > 0){
 	return <>
-		   {agencysTable}
+		   <Table
+		       striped
+		       bordered
+		       hover
+		       size="sm"
+		       variant="dark"
+		       responsive
+		   >
+		       {agencysTableHead}
+		       {agencysTableBody}
+		   </Table>
 	       </>
     }else{
 	return <p>Trip Calendar loading...</p>
