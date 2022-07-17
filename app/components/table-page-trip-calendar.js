@@ -2,26 +2,27 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TableSwitch from './table-switch-trip-calendar';
 import PropTypes from 'prop-types';
-const TablePage = ({ agencyIds }) => {
-    if(agencyIds.length > 0){
-    console.log('TablePage agencyIds.length:'+agencyIds.length);
-    const agencyId=agencyIds[0].agency_id;
-    console.log('TablePage agencyId:'+agencyId);
-    const agencyName=agencyIds[0].agency_name;
-    console.log('TablePage agencyName:'+agencyName);
+const TablePage = ({ agencyIdName }) => {
+    if(agencyIdName !== undefined){
+	//console.log('TablePage agencyIdName:'+JSON.stringify(agencyIdName));
+	//console.log('TablePage agencyIdName.length:'+agencyIdName.length);
+	const agencyId=agencyIdName.agency_id;
+	console.log('TablePage agencyId:'+agencyId);
+	const agencyName=agencyIdName.agency_name;
+	console.log('TablePage agencyName:'+agencyName);
     /*store and initialise data in function component state*/
-    const [tripCalendar0, setTripCalendar0] = useState({});
+    const [tripCalendar, setTripCalendar] = useState({});
     const getTripCalendar = async () => {
         try {
-            /*get agencyIds*/
-	    const address='https://v1gtfs.vbn.api.swingbe.de/trip-calendar-by-agency-id?agencyid=231';
+            /*get trip calendar*/
+	    const address=`https://v1gtfs.vbn.api.swingbe.de/trip-calendar-by-agency-id?agencyid=${agencyId}`;
 	    console.log('address:'+address);
 	    /*TODO handle errors: https://www.valentinog.com/blog/await-react/*/
             const res = await axios.get(address);
 
             let aryTripCalendar = res.data;
 	    console.log('aryTripCalendar.length:'+aryTripCalendar.length);
-	    setTripCalendar0(aryTripCalendar);
+	    setTripCalendar(aryTripCalendar);
         } catch (err) {
             console.error('err.message: ' + err.message);
         }
@@ -36,7 +37,7 @@ const TablePage = ({ agencyIds }) => {
         return (
             <>
                 <TableSwitch
-		    tripCalendar={tripCalendar0}
+		    tripCalendar={tripCalendar}
 		    agencyId={agencyId}
 		    agencyName={agencyName}
 		/>
@@ -47,6 +48,6 @@ const TablePage = ({ agencyIds }) => {
     }
 };
 TablePage.propTypes = {
-    agencyIds: PropTypes.array
+    agencyIdName: PropTypes.object
 };
 export default TablePage;

@@ -26,12 +26,22 @@ const TripCalendar = () => {
     /*use an empty dependency array to ensure the hook is running only once*/
     /*TODO study dependency array: https://reactjs.org/docs/hooks-effect.html*/
     }, []);
+    /*const agencys = agencyIds.map(value =>
+	<div key={value.agency_id} className={value.agency_name}>
+	    id: {value.agency_id}, name: {value.agency_name}
+	</div>
+    );*/
+    const agencysTable = agencyIds.map(value =>
+			   <TablePage
+			       className={value.agency_name}
+			       agencyIdName={value}
+			       key={value.agency_id}
+			   />
+    );
     if(agencyIds.length > 0){
 	return <>
-		   <TablePage
-		       agencyIds={agencyIds}
-		   />
-	   </>
+		   {agencysTable}
+	       </>
     }else{
 	return <p>Trip Calendar loading...</p>
     }
