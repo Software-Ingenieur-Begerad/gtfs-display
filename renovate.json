@@ -6,8 +6,8 @@
     "timezone": "Europe/Berlin",
     "schedule":
     [
-	"after 10pm every weekday",
-	"before 5am every weekday",
+	"after 4pm every weekday",
+	"before 8am every weekday",
 	"every weekend"
     ],
     "packageRules":
